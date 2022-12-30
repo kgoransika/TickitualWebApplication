@@ -16,11 +16,16 @@ export class HomeComponent implements OnInit {
       next: data => {
         this.content = data;
       },
-      error: err => {console.log(err)
+      error: err => {
         if (err.error) {
-          this.content = JSON.parse(err.error).message;
+          try {
+            const res = JSON.parse(err.error);
+            this.content = res.message;
+          } catch {
+            this.content = `Error with status: ${err.status} - ${err.statusText}`;
+          }
         } else {
-          this.content = "Error with status: " + err.status;
+          this.content = `Error with status: ${err.status}`;
         }
       }
     });

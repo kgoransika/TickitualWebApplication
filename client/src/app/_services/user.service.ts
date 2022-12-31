@@ -18,7 +18,7 @@ export class UserService {
     return this.http.get(API_URL + 'user', { responseType: 'text' });
   }
 
-  getAdminBoard(): Observable<any> {
+  getEventHolderBoard(): Observable<any> {
     return this.http.get(API_URL + 'admin', { responseType: 'text' });
   }
 }

@@ -9,7 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
-import { BoardAdminComponent } from './board-event-holder/board-event-holder.component';
+import { BoardEventHolderComponent } from './board-event-holder/board-event-holder.component';
 import { BoardUserComponent } from './board-user/board-user.component';
 
 import { httpInterceptorProviders } from './_helpers/http.interceptor';
@@ -22,7 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RegisterComponent,
     HomeComponent,
     ProfileComponent,
-    BoardAdminComponent,
+    BoardEventHolderComponent,
     BoardUserComponent
   ],
   imports: [

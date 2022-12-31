@@ -6,7 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { BoardUserComponent } from './board-user/board-user.component';
-import { BoardEventHolderComponent } from './board-event-holder/board-event-holder.component';
+import { BoardAdminComponent } from './board-event-holder/board-event-holder.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'user', component: BoardUserComponent },
-  { path: 'admin', component: BoardEventHolderComponent },
+  { path: 'admin', component: BoardAdminComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

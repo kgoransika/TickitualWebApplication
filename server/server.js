@@ -2,16 +2,21 @@ const express = require("express");
 const cors = require("cors");
 const cookieSession = require("cookie-session");
 
+const dbConfig = require("./app/config/db.config");
+
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:8081"
-};
+  origin: ["http://localhost:8081"],
+  credentials: true
+}
 
 app.use(cors(corsOptions));
 
+// parse requests of content-type - application/json
 app.use(express.json());
 
+// parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
 app.use(
@@ -41,7 +46,7 @@ db.mongoose
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to tickitual application." });
+  res.json({ message: "Welcome to bezkoder application." });
 });
 
 // routes
@@ -68,13 +73,13 @@ function initial() {
       });
 
       new Role({
-        name: "eventHolder"
+        name: "admin"
       }).save(err => {
         if (err) {
           console.log("error", err);
         }
 
-        console.log("added 'eventHolder' to roles collection");
+        console.log("added 'admin' to roles collection");
       });
     }
   });

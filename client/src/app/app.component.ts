@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { StorageService } from './_services/storage.service';
 import { AuthService } from './_services/auth.service';
+import { EventBusService } from './_shared/event-bus.service';
 
 @Component({
   selector: 'app-root',
@@ -9,14 +10,21 @@ import { AuthService } from './_services/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  title(title: any) {
+    throw new Error('Method not implemented.');
+  }
   private roles: string[] = [];
   isLoggedIn = false;
-  showEventHolderBoard = false;
+  showAdminBoard = false;
+  showModeratorBoard = false;
   username?: string;
+
+  eventBusSub?: Subscription;
 
   constructor(
     private storageService: StorageService,
-    private authService: AuthService
+    private authService: AuthService,
+    private eventBusService: EventBusService
   ) {}
 
   ngOnInit(): void {
@@ -26,10 +34,15 @@ export class AppComponent {
       const user = this.storageService.getUser();
       this.roles = user.roles;
 
-      this.showEventHolderBoard = this.roles.includes('ROLE_EVENTHOLDER');
+      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+      this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
 
       this.username = user.username;
     }
+
+    this.eventBusSub = this.eventBusService.on('logout', () => {
+      this.logout();
+    });
   }
 
   logout(): void {

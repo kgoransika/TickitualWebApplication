@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BoardEventHolderComponent } from './board-event-holder.component';
+import { BoardAdminComponent } from './board-event-holder.component';
 
-describe('BoardEventHolderComponent', () => {
-  let component: BoardEventHolderComponent;
-  let fixture: ComponentFixture<BoardEventHolderComponent>;
+describe('BoardAdminComponent', () => {
+  let component: BoardAdminComponent;
+  let fixture: ComponentFixture<BoardAdminComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BoardEventHolderComponent ]
+      declarations: [ BoardAdminComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(BoardEventHolderComponent);
+    fixture = TestBed.createComponent(BoardAdminComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

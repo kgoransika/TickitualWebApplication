@@ -44,7 +44,7 @@ isEventHolder = (req, res, next) => {
           }
         }
 
-        res.status(403).send({ message: "Required eventHolder Role!" });
+        res.status(403).send({ message: "Require eventHolder Role!" });
         return;
       }
     );
@@ -52,7 +52,7 @@ isEventHolder = (req, res, next) => {
 };
 
 const authJwt = {
-    verifyToken,
-    isEventHolder
-  };
-  module.exports = authJwt;
+  verifyToken,
+  isEventHolder
+};
+module.exports = authJwt;

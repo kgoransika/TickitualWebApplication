@@ -19,6 +19,6 @@ export class UserService {
   }
 
   getEventHolderBoard(): Observable<any> {
-    return this.http.get(API_URL + 'admin', { responseType: 'text' });
+    return this.http.get(API_URL + 'eventHolder', { responseType: 'text' });
   }
 }

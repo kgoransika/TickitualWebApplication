@@ -36,7 +36,7 @@ db.mongoose
     useUnifiedTopology: true
   })
   .then(() => {
-    console.log("Successfully connect to MongoDB.");
+    console.log("Successfully connected to MongoDB.");
     initial();
   })
   .catch(err => {
@@ -46,7 +46,7 @@ db.mongoose
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
+  res.json({ message: "Welcome to tickitual application." });
 });
 
 // routes
@@ -73,13 +73,13 @@ function initial() {
       });
 
       new Role({
-        name: "admin"
+        name: "eventHolder"
       }).save(err => {
         if (err) {
           console.log("error", err);
         }
 
-        console.log("added 'admin' to roles collection");
+        console.log("added 'eventHolder' to roles collection");
       });
     }
   });

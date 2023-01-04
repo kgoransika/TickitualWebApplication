@@ -1,8 +1,28 @@
 <div class="container">
   <header class="jumbotron">
-    <p>{{ content }}</p>
+    <!-- <p>{{ content }}</p> -->
   </header>
 </div>
-<mat-card>
-  <mat-card-content>Card</mat-card-content>
+
+<div class="headerContent" routerLinkActive="active">
+  <h1 id="createEventTitle">Create your first event</h1><br>
+  <a routerLink='/createEvent' class="nav-link" routerLinkActive="active"><button mat-flat-button color="accent">Create Event</button></a>
+</div>
+
+<mat-card hidden>
+  <mat-card-title>Event 1</mat-card-title><br>
+  <mat-card-content></mat-card-content>
 </mat-card>
+<mat-card hidden>
+  <mat-card-title>Event 2</mat-card-title><br>
+  <mat-card-content></mat-card-content>
+</mat-card>
+<mat-card hidden>
+  <mat-card-title>Event 3</mat-card-title><br>
+  <mat-card-content></mat-card-content>
+</mat-card>
+<mat-card hidden>
+  <mat-card-title>Event 4</mat-card-title><br>
+  <mat-card-content></mat-card-content>
+</mat-card>
+

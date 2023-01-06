@@ -1,0 +1,25 @@
+#content{
+  margin-top: 30px;
+  text-align: center;
+}
+
+mat-card{
+  text-align: left;
+  padding: 30px;
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-bottom: 20px;
+}
+
+h1{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+label{
+  font-size: 18px;
+}
+
+.timeSection{
+  size: 20px;
+}
+

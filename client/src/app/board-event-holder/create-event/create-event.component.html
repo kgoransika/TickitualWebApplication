@@ -1,1 +1,87 @@
-<h1>create-event works!</h1>
+<div id="content">
+  <h1>Let's create a new event!</h1>
+  <div id="createEventDiv">
+    <form autocomplete="off">
+
+      <mat-card>
+          <label for="eventName" class="form-label">Event Name</label><br>
+          <input type="text" class="form-control" id="eventName" aria-describedby="eventName">
+      </mat-card>
+
+      <mat-card>
+        <label for="eventType" class="form-label">Event Type</label><br>
+          <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="eventType" name="eventType">
+            <mat-radio-button [checked]="true" class="example-radio-button" *ngFor="let eventType of eventTypes" [value]="eventType">
+              {{eventType}}
+            </mat-radio-button>
+          </mat-radio-group><br>
+
+          <div class="venueInput" *ngIf="eventType == 'Venue Event'">
+            <input type="text" class="form-control" name="eventVenue" id="eventVenue" aria-describedby="eventVenue" placeholder="Enter Venue">
+          </div>
+
+          <div class="onlineEventInput" *ngIf="eventType == 'Online Event'">
+            <input type="text" class="form-control" name="eventOnlineMode" id="eventOnlineMode" aria-describedby="eventOnlineMode" placeholder="Enter suggested online method">
+          </div>
+      </mat-card>
+
+      <mat-card>
+          <label for="eventTime" class="form-label">Event Date and Time</label><br>
+            <div class="row" style="margin-left: 5px;">
+              <input type="date" data-format="dd/MM/yyyy" id="eventDate" class="form-control" name="eventDate" style="width: 25%; margin-right: 10px;">
+              <input type="time" data-format="hh:mm" id="eventTime" class="form-control" name="eventTime" style="width: 25%;">
+            </div><br><br>
+          <label for="eventDuration" class="form-label">Event Duration</label><br>
+          <input type="text" class="form-control" name="eventDuration" style="width: 25%;" placeholder="1 hour">
+      </mat-card>
+
+      <mat-card>
+        <label for="eventCategory" class="form-label">Event Category</label><br>
+        <select class="form-select">
+          <option class="form-label" *ngFor="let Category of categories" [value]="Category.value">
+            {{Category.viewValue}}
+          </option>
+        </select>
+      </mat-card>
+
+      <!-- <mat-card>
+        <label class="form-label">Tickets</label><br>
+        <mat-checkbox id="unlimitedTickets" color="primary" (change)="unlimitedTicketsTxt = !unlimitedTicketsTxt">Unlimited Tickets</mat-checkbox>
+        <label style="font-size: 12px;" class="alert alert-warning" role="alert" id="unlimitedTicketsTxt" *ngIf="unlimitedTicketsTxt">
+          Note: When choosing Unlimited tickets, consider the number of participants that can be present in the selected !
+        </label>
+    </mat-card> -->
+
+    <mat-card>
+      <label for="ticketNumberType" class="form-label">Tickets</label><br>
+        <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="ticketNumberType" name="ticketNumberType">
+          <mat-radio-button [checked]="true" class="example-radio-button" *ngFor="let ticketNumberType of ticketNumberTypes" [value]="ticketNumberType">
+            {{ticketNumberType}}
+          </mat-radio-button>
+        </mat-radio-group><br>
+
+        <div class="specificNumber" *ngIf="ticketNumberType == 'Allocate specific number of tickets'">
+          <input type="number" style="width: 40%;" class="form-control" name="specificNumber" id="specificNumber" aria-describedby="specificNumber" placeholder="Enter suggested number of tickets">
+        </div>
+
+        <div class="unlimited" *ngIf="ticketNumberType == 'Unlimited Tickets'">
+          <label style="font-size: 12px;" class="alert alert-warning" role="alert" id="unlimited" *ngIf="ticketNumberType == 'Unlimited Tickets'">
+            Note: When choosing Unlimited tickets, consider the number of participants that can be present in the selected venue!
+          </label>
+        </div><br>
+
+        <label for="ticketTypes" class="form-label">Ticket packages
+          <button type="button" style="width: fit-content;" class="btn btn-primary btn-sm" (click)="addPackage()">Add Package</button>
+        </label><br>
+        <section *ngFor="let package of packages; let i = index;">
+          <div class="row" style="align-items: center;">
+            Package {{i + 1}}
+            <input type="text" style="width: 40%; margin-left: 10px;" class="form-control" id="ticketTypes" aria-describedby="ticketTypes" placeholder="Package Name">
+            <input type="text" style="width: 20%; margin-left: 10px;" class="form-control" id="ticketTypes" aria-describedby="ticketTypes" placeholder="Price">
+            <button type="button" style="width: fit-content; margin-left: 10px;" class="btn btn-danger btn-sm" (click)="removePackage(i)">Remove</button>
+          </div><br>
+        </section>
+    </mat-card><br>
+    </form>
+  </div>
+</div>

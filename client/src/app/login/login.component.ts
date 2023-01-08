@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { delay } from 'rxjs';
 import { AuthService } from '../_services/auth.service';
 import { StorageService } from '../_services/storage.service';
 
@@ -38,13 +39,13 @@ export class LoginComponent implements OnInit {
         this.isLoggedIn = true;
         this.roles = this.storageService.getUser().roles;
         this.reloadPage();
+        this.router.navigate(['/eventHolder']);
       },
       error: err => {
         this.errorMessage = err.error.message;
         this.isLoginFailed = true;
       }
     });
-    this.router.navigate(['/eventHolder']);
   }
 
   reloadPage(): void {

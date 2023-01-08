@@ -13,6 +13,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
@@ -53,7 +54,8 @@ import { CreateEventComponent } from './board-event-holder/create-event/create-e
     MatRadioModule,
     MatIconModule,
     MatSelectModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSnackBarModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

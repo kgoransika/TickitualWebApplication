@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder } from '@angular/forms';
+import { Event } from 'src/app/models/event.model';
+import { EventService } from 'src/app/_services/event.service';
 
 interface Category {
   value: string;
@@ -11,10 +13,86 @@ interface Category {
   templateUrl: './create-event.component.html',
   styleUrls: ['./create-event.component.css']
 })
-export class CreateEventComponent {
+export class CreateEventComponent implements OnInit {
 
-  eventType: string | undefined;
-  eventTypes: string[] = ['Venue Event', 'Online Event'];
+  event: Event = {
+    eventName: '',
+    eventMode: {
+      enum: ['Venue Event', 'Online Event']
+    },
+    eventVenue: '',
+    eventOnlineMethod: '',
+    eventDate: '',
+    eventTime: '',
+    eventDuration: '',
+    eventCategory: '',
+    unlimitedTickets: false,
+    ticketAmount: '',
+    ticketPackage: {
+      packageName: '',
+      packagePrice: ''
+    },
+    ticketDescription: '',
+  };
+  submitted = false
+
+  constructor(private eventService: EventService) { }
+
+  ngOnInit(): void {
+  }
+
+  saveEvent(): void {
+    const data = {
+      eventName: this.event.eventName,
+      eventMode: this.event.eventMode,
+      eventVenue: this.event.eventVenue,
+      eventOnlineMethod: this.event.eventOnlineMethod,
+      eventDate: this.event.eventDate,
+      eventTime: this.event.eventTime,
+      eventDuration: this.event.eventDuration,
+      eventCategory: this.event.eventCategory,
+      unlimitedTickets: this.event.unlimitedTickets,
+      ticketAmount: this.event.ticketAmount,
+      ticketPackage: {
+        packageName: this.event.ticketPackage?.packageName,
+        packagePrice: this.event.ticketPackage?.packagePrice,
+      },
+      ticketDescription: this.event.ticketDescription,
+    };
+
+    this.eventService.create(data)
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+          this.submitted = true;
+        },
+        error: (e) => console.error(e)
+      });
+  }
+
+  /* newEvent(): void {
+    this.submitted = false;
+    this.event = {
+      eventName: this.event.eventName,
+      eventMode: this.event.eventMode,
+      eventVenue: this.event.eventVenue,
+      eventOnlineMethod: this.event.eventOnlineMethod,
+      eventDate: this.event.eventDate,
+      eventTime: this.event.eventTime,
+      eventDuration: this.event.eventDuration,
+      eventCategory: this.event.eventCategory,
+      unlimitedTickets: this.event.unlimitedTickets,
+      ticketAmount: this.event.ticketAmount,
+      ticketPackage: {
+        packageName: this.event.ticketPackage.packageName,
+        packagePrice: this.event.ticketPackage.packagePrice
+      },
+      ticketDescription: this.event.ticketDescription,
+    };
+  } */
+
+  eventMode: string | undefined;
+  eventModes: string[] = ['Venue Event', 'Online Event'];
 
   ticketNumberType: string | undefined;
   ticketNumberTypes: string[] = ['Allocate specific number of tickets', 'Unlimited Tickets'];

@@ -1,10 +1,12 @@
 const express = require("express");
 const cors = require("cors");
 const cookieSession = require("cookie-session");
-
 const dbConfig = require("./app/config/db.config");
 
 const app = express();
+const socketio = require("socket.io");
+const http = require("http");
+const server = http.createServer(app);
 
 var corsOptions = {
   origin: ["http://localhost:8081"],
@@ -52,6 +54,12 @@ app.get("/", (req, res) => {
 // routes
 require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
+require("./app/routes/event.routes")(app);
+
+let io = socketio(server);
+io.on("connection",function(socket){
+  console.log("Connected to SOCKET!");
+})
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

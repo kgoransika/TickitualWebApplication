@@ -1,5 +1,6 @@
 export class Event {
   id?: any;
+  createdBy?: String;
   eventName?: String;
   eventMode?: {
     type?: String,

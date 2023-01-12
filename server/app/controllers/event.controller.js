@@ -11,6 +11,7 @@ exports.create = (req, res) => {
 
   // Create a event
   const event = new Event({
+    createdBy: req.body.createdBy,
     eventName: req.body.eventName,
     eventMode: req.body.eventMode,
     eventVenue: req.body.eventVenue,

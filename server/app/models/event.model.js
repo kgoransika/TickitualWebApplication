@@ -3,6 +3,7 @@ module.exports = mongoose => {
     "event",
     mongoose.Schema(
       {
+        createdBy: String,
         eventName: String,
         eventMode:['Venue Event','Online Event'],
         eventVenue: String,

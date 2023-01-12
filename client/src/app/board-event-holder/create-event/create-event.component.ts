@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder } from '@angular/forms';
 import { Event } from 'src/app/models/event.model';
 import { EventService } from 'src/app/_services/event.service';
+import { StorageService } from 'src/app/_services/storage.service';
 
 interface Category {
   value: string;
@@ -13,9 +14,14 @@ interface Category {
   templateUrl: './create-event.component.html',
   styleUrls: ['./create-event.component.css']
 })
+
 export class CreateEventComponent implements OnInit {
 
+
+  username?: string;
+
   event: Event = {
+    createdBy: this.username,
     eventName: '',
     eventMode: {
       enum: ['Venue Event', 'Online Event']
@@ -36,13 +42,16 @@ export class CreateEventComponent implements OnInit {
   };
   submitted = false
 
-  constructor(private eventService: EventService) { }
+  constructor(private eventService: EventService, private storageService: StorageService) { }
 
   ngOnInit(): void {
+    const user = this.storageService.getUser();
+      this.username = user.username;
   }
 
   saveEvent(): void {
     const data = {
+      createdBy: this.username,
       eventName: this.event.eventName,
       eventMode: this.event.eventMode,
       eventVenue: this.event.eventVenue,

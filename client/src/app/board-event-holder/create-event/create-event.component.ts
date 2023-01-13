@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Event } from 'src/app/models/event.model';
 import { EventService } from 'src/app/_services/event.service';
 import { StorageService } from 'src/app/_services/storage.service';
@@ -16,7 +17,6 @@ interface Category {
 })
 
 export class CreateEventComponent implements OnInit {
-
 
   username?: string;
 
@@ -42,7 +42,7 @@ export class CreateEventComponent implements OnInit {
   };
   submitted = false
 
-  constructor(private eventService: EventService, private storageService: StorageService) { }
+  constructor(private eventService: EventService, private storageService: StorageService, private router: Router) { }
 
   ngOnInit(): void {
     const user = this.storageService.getUser();
@@ -77,6 +77,8 @@ export class CreateEventComponent implements OnInit {
         },
         error: (e) => console.error(e)
       });
+
+      this.router.navigate(['/eventHolder']);
   }
 
   /* newEvent(): void {

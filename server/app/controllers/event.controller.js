@@ -43,20 +43,44 @@ exports.create = (req, res) => {
 
 // Retrieve all Events from the database.
 exports.findAll = (req, res) => {
-  
+   const createdBy = req.query.createdBy;
+  var condition = createdBy ? { createdBy: { $regex: new RegExp(createdBy), $options: "i" } } : {};
+
+  Event.find(condition)
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving Event."
+      });
+    });
 };
 
-// Find a single Event with an id
+// Find a single Event with an username
 exports.findOne = (req, res) => {
-  
+  const createdBy = req.params.createdBy;
+
+  Event.findByCreatedBy(createdBy)
+    .then(data => {
+      if (!data)
+        res.status(404).send({ message: "Not found Event with createdBy " + createdBy });
+      else res.send(data);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .send({ message: "Error retrieving Event with createdBy=" + createdBy });
+    });
 };
 
-// Update a Event by the id in the request
+// Update a Event by the username in the request
 exports.update = (req, res) => {
   
 };
 
-// Delete a Event with the specified id in the request
+// Delete a Event with the specified username in the request
 exports.delete = (req, res) => {
   
 };

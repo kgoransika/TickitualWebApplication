@@ -1,11 +1,14 @@
 <div id="content">
-  <h1>Let's create a new event!</h1>
   <div id="createEventDiv">
-    <form autocomplete="off">
+    <form autocomplete="off" name="form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
 
       <mat-card>
           <label for="eventName" class="form-label">Event Name</label><br>
-          <input type="text" class="form-control" id="eventName" [(ngModel)]="event.eventName" name="eventName" aria-describedby="eventName" placeholder="My Event">
+          <input type="text" class="form-control" id="eventName" [(ngModel)]="event.eventName" name="eventName" aria-describedby="eventName" placeholder="My Event" required
+          #eventName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && eventName.errors }">
+          <div *ngIf="eventName.errors && f.submitted" class="invalid-feedback">
+            Username is required!
+          </div>
       </mat-card>
 
       <mat-card>

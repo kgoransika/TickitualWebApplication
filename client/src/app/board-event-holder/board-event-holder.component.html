@@ -5,8 +5,12 @@
 </div>
 
 <div class="headerContent" routerLinkActive="active">
-  <h1 id="createEventTitle">Create your first event</h1><br>
+  <h1 id="createEventTitle">Let's create a new event!</h1><br>
   <a routerLink='/createEvent' class="nav-link" routerLinkActive="active"><button mat-flat-button color="primary">Create Event</button></a>
+</div><hr>
+
+<div *ngIf="showDivFlag == 'true'">
+  <h2>Your Events</h2>
 </div>
 
 <mat-card hidden>

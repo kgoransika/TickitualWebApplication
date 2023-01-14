@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Event } from 'src/app/models/event.model';
 import { EventService } from 'src/app/_services/event.service';
 import { StorageService } from 'src/app/_services/storage.service';
+import { BoardEventHolderComponent } from '../board-event-holder.component';
 
 interface Category {
   value: string;
@@ -19,6 +21,14 @@ interface Category {
 export class CreateEventComponent implements OnInit {
 
   username?: string;
+  durationInSeconds = 5;
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+
+  form: any = {
+    eventName: null,
+  };
 
   event: Event = {
     createdBy: this.username,
@@ -42,7 +52,13 @@ export class CreateEventComponent implements OnInit {
   };
   submitted = false
 
-  constructor(private eventService: EventService, private storageService: StorageService, private router: Router) { }
+  constructor(private eventService: EventService, private storageService: StorageService, private router: Router, private _snackBar: MatSnackBar) { }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+       duration: 5000,
+    });
+ }
 
   ngOnInit(): void {
     const user = this.storageService.getUser();
@@ -74,11 +90,16 @@ export class CreateEventComponent implements OnInit {
         next: (res) => {
           console.log(res);
           this.submitted = true;
+          this.router.navigate(['/eventHolder']);
+          this.openSnackBar('Your Event was created successfully!', 'OK');
         },
-        error: (e) => console.error(e)
+        error: err => {
+          this.errorMessage = err.error.message;
+          this.submitted = false;
+        }
       });
 
-      this.router.navigate(['/eventHolder']);
+
   }
 
   /* newEvent(): void {

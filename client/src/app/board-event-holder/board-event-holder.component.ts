@@ -17,6 +17,8 @@ export class BoardEventHolderComponent implements OnInit {
   events?: Event[];
   createdBy = '';
   username: any;
+  showDivFlag: String | undefined;
+  showDivFlags: String[] = ['true' , 'false'];
 
   constructor(private userService: UserService, private eventService: EventService, private storageService: StorageService, private router: Router) { }
 
@@ -62,6 +64,13 @@ export class BoardEventHolderComponent implements OnInit {
         next: (data) => {
           this.events = data;
           console.log(data);
+          if(data.length > 0){
+            this.showDivFlag = 'true';
+            this.reloadPage
+          }
+          else{
+            this.showDivFlag = 'false';
+          }
         },
         error: (e) => console.error(e)
       });

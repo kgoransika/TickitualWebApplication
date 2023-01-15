@@ -67,7 +67,7 @@ export class CreateEventComponent implements OnInit {
     const data = {
       createdBy: this.username,
       eventName: this.event.eventName,
-      eventMode: this.event.eventMode,
+      eventMode: this.eventMode,
       eventVenue: this.event.eventVenue,
       eventOnlineMethod: this.event.eventOnlineMethod,
       eventDate: this.event.eventDate,

@@ -10,27 +10,28 @@
 </div><hr>
 
 <div *ngIf="showDivFlag == 'true'">
-  <h2>Your Events</h2>
-
-  <div *ngFor="let item of items | async">
-    <p>{{ item.createdBy }}</p>
-  </div>
+  <h1>Your Events</h1>
 </div>
 
-<mat-card hidden>
-  <mat-card-title>Event 1</mat-card-title><br>
-  <mat-card-content></mat-card-content>
-</mat-card>
-<mat-card hidden>
-  <mat-card-title>Event 2</mat-card-title><br>
-  <mat-card-content></mat-card-content>
-</mat-card>
-<mat-card hidden>
-  <mat-card-title>Event 3</mat-card-title><br>
-  <mat-card-content></mat-card-content>
-</mat-card>
-<mat-card hidden>
-  <mat-card-title>Event 4</mat-card-title><br>
-  <mat-card-content></mat-card-content>
-</mat-card>
+<ng-container *ngFor="let item of items | async">
+  <mat-card>
+    <mat-card-title>{{ item.eventName }}</mat-card-title><br>
+    <mat-card-content>
+      <p>Event Mode: {{ item.eventMode }}</p>
+      <p>Event Venue: {{ item.eventVenue }}</p>
+      <p>Event Date: {{ item.eventDate }}</p>
+      <p>Event Time: {{ item.eventTime }}</p>
+      <p>Event Duration: {{ item.eventDuration }}</p>
+      <p>Event Category: {{ item.eventCategory }}</p><br>
+
+      <p>No. of Tickets: {{ item.ticketAmount }}</p>
+      <h3>Package 1</h3>
+      <p>Ticket Package Name: {{ item.ticketPackage.packageName }}</p>
+      <p>Package Price: {{ item.ticketPackage.packagePrice }}</p>
+      <p>Ticket Description: {{ item.ticketDescription }}</p>
+    </mat-card-content>
+  </mat-card>
+<br>
+</ng-container>
+
 

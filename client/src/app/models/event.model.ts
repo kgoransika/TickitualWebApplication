@@ -2,11 +2,7 @@ export class Event {
   id?: any;
   createdBy?: String;
   eventName?: String;
-  eventMode?: {
-    type?: String,
-    enum?: ['Venue Event','Online Event'],
-    required?: true
-  };
+  eventMode?: String;
   eventVenue?: String;
   eventOnlineMethod?: String;
   eventDate?: String;

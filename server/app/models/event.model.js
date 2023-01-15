@@ -5,7 +5,7 @@ module.exports = mongoose => {
       {
         createdBy: String,
         eventName: String,
-        eventMode:['Venue Event','Online Event'],
+        eventMode: String,
         eventVenue: String,
         eventOnlineMethod: String,
         eventDate: String,

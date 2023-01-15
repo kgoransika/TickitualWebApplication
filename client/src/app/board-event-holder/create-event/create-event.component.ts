@@ -33,9 +33,7 @@ export class CreateEventComponent implements OnInit {
   event: Event = {
     createdBy: this.username,
     eventName: '',
-    eventMode: {
-      enum: ['Venue Event', 'Online Event']
-    },
+    eventMode: '',
     eventVenue: '',
     eventOnlineMethod: '',
     eventDate: '',

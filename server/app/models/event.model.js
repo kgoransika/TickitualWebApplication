@@ -13,8 +13,8 @@ module.exports = mongoose => {
         eventDuration: String,
         eventCategory: String,
         unlimitedTickets: Boolean,
-        ticketAmount: String,
         ticketPackage: {
+          ticketAmount: String,
           packageName: String,
           packagePrice: String,
         },

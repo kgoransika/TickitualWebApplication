@@ -20,9 +20,12 @@ export class CreateEventComponent implements OnInit {
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
+  unlimitedTickets = false;
+
 
   form: any = {
     eventName: null,
+    checkbox: false, input: ''
   };
 
   event: Event = {
@@ -36,8 +39,8 @@ export class CreateEventComponent implements OnInit {
     eventDuration: '',
     eventCategory: '',
     unlimitedTickets: false,
-    ticketAmount: '',
     ticketPackage: {
+      ticketAmount: '',
       packageName: '',
       packagePrice: ''
     },
@@ -70,8 +73,8 @@ export class CreateEventComponent implements OnInit {
       eventDuration: this.event.eventDuration,
       eventCategory: this.eventCategory,
       unlimitedTickets: this.event.unlimitedTickets,
-      ticketAmount: this.event.ticketAmount,
       ticketPackage: {
+        ticketAmount: this.event.ticketPackage?.ticketAmount,
         packageName: this.event.ticketPackage?.packageName,
         packagePrice: this.event.ticketPackage?.packagePrice,
       },

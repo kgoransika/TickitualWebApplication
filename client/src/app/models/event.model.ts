@@ -10,8 +10,8 @@ export class Event {
   eventDuration?: String;
   eventCategory?: String;
   unlimitedTickets?: Boolean;
-  ticketAmount?: String;
   ticketPackage?:{
+    ticketAmount?: String;
     packageName: String,
     packagePrice: String,
   };

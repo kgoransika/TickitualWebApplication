@@ -54,46 +54,37 @@
     </mat-card> -->
 
     <mat-card>
-      <label for="ticketNumberType" class="form-label">Tickets</label><br>
-        <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="ticketNumberType" name="ticketNumberType" id="ticketNumberType">
-          <mat-radio-button [checked]="true" class="example-radio-button" *ngFor="let ticketNumberType of ticketNumberTypes" [value]="ticketNumberType">
-            {{ticketNumberType}}
-          </mat-radio-button>
-        </mat-radio-group><br>
+      <label for="ticketTypes" class="form-label">Ticket packages
+        <button mat-stroked-button class="btn-sm" color="primary" type="button" style="width: fit-content;" (click)="addPackage()">Add Package</button>
+      </label>
 
-        <div class="ticketAmount" *ngIf="ticketNumberType == 'Allocate specific number of tickets'">
-          <input type="number" style="width: 40%;" class="form-control" name="ticketAmount" id="ticketAmount" [(ngModel)]="event.ticketAmount" aria-describedby="ticketAmount" placeholder="Enter suggested number of tickets">
-        </div>
+      <div style="display: inline-block">
+        <mat-checkbox class="example-margin" [(ngModel)]="unlimitedTickets" name="unlimitedTickets">Unlimited Tickets</mat-checkbox>
+          <section [ngClass]="{'disabled': unlimitedTickets}">
+            <input type="number" class="form-control" id="ticketAmount" [(ngModel)]="event.ticketPackage!.ticketAmount" name="ticketAmount" style="width: 20%;" placeholder="No. of Tickets">
+          </section><br>
+      </div>
 
-        <div class="unlimitedTickets" *ngIf="ticketNumberType == 'Unlimited Tickets'">
-          <label style="font-size: 12px;" class="alert alert-warning" role="alert" id="unlimitedTickets" [(ngModel)]="event.unlimitedTickets" name="unlimitedTickets" *ngIf="ticketNumberType == 'Unlimited Tickets'">
-            Note: When choosing Unlimited tickets, consider the number of participants that can be present in the selected venue!
-          </label>
+      <section *ngFor="let package of packages; let i = index;">
+        <div class="row" style="align-items: center;">
+          Package {{i + 1}}
+          <input type="text" style="width: 40%; margin-left: 10px;" class="form-control" id="packageName" [(ngModel)]="event.ticketPackage!.packageName" name="packageName" aria-describedby="ticketTypes" placeholder="Package Name">
+          <input type="text" style="width: 20%; margin-left: 10px;" class="form-control" id="packagePrice" [(ngModel)]="event.ticketPackage!.packagePrice" name="packagePrice" aria-describedby="ticketTypes" placeholder="Price">
+          <button type="button" style="width: fit-content; margin-left: 10px;" class="btn btn-danger btn-sm" (click)="removePackage(i)">Remove</button>
         </div><br>
+      </section><br>
 
-        <label for="ticketTypes" class="form-label">Ticket packages
-          <button mat-stroked-button class="btn-sm" color="primary" type="button" style="width: fit-content;" (click)="addPackage()">Add Package</button>
-        </label><br>
-        <section *ngFor="let package of packages; let i = index;">
-          <div class="row" style="align-items: center;">
-            Package {{i + 1}}
-            <input type="text" style="width: 40%; margin-left: 10px;" class="form-control" id="packageName" [(ngModel)]="event.ticketPackage!.packageName" name="packageName" aria-describedby="ticketTypes" placeholder="Package Name">
-            <input type="text" style="width: 20%; margin-left: 10px;" class="form-control" id="packagePrice" [(ngModel)]="event.ticketPackage!.packagePrice" name="packagePrice" aria-describedby="ticketTypes" placeholder="Price">
-            <button type="button" style="width: fit-content; margin-left: 10px;" class="btn btn-danger btn-sm" (click)="removePackage(i)">Remove</button>
-          </div><br>
-        </section><br>
+      <label for="ticketDesc" class="form-label">Ticket Description</label>
+        <div class="form-outline">
+          <textarea class="form-control" id="ticketDescription" [(ngModel)]="event.ticketDescription" name="ticketDescription" rows="4" placeholder="A small description for the ticket..." maxlength="200"></textarea>
+        </div><br><br>
 
-        <label for="ticketDesc" class="form-label">Ticket Description</label>
-          <div class="form-outline">
-            <textarea class="form-control" id="ticketDescription" [(ngModel)]="event.ticketDescription" name="ticketDescription" rows="4" placeholder="A small description for the ticket..." maxlength="200"></textarea>
-          </div><br><br>
-
-          <div style="text-align: right;">
-            <button (click)="saveEvent()" mat-raised-button color="primary">Create Event</button>
-          </div>
-          <div *ngIf="submitted">
-            <h4>Event was submitted successfully!</h4>
-          </div>
+        <div style="text-align: right;">
+          <button (click)="saveEvent()" mat-raised-button color="primary">Create Event</button>
+        </div>
+        <div *ngIf="submitted">
+          <h4>Event was submitted successfully!</h4>
+        </div>
     </mat-card><br>
     </form>
   </div>

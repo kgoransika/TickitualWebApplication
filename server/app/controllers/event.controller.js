@@ -20,8 +20,8 @@ exports.create = (req, res) => {
     eventTime: req.body.eventTime,
     eventDuration: req.body.eventDuration,
     eventCategory: req.body.eventCategory,
-    ticketAmount: req.body.ticketAmount,
     ticketPackage: {
+      ticketAmount: req.body.ticketPackage.ticketAmount,
       packageName: req.body.ticketPackage.packageName,
       packagePrice: req.body.ticketPackage.packagePrice,
     },

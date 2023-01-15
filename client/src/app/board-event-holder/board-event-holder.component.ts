@@ -4,6 +4,7 @@ import { UserService } from '../_services/user.service';
 import { Event } from 'src/app/models/event.model';
 import { StorageService } from '../_services/storage.service';
 import { Router } from '@angular/router';
+import { Observable, tap } from 'rxjs';
 
 
 @Component({
@@ -19,10 +20,15 @@ export class BoardEventHolderComponent implements OnInit {
   username: any;
   showDivFlag: String | undefined;
   showDivFlags: String[] = ['true' , 'false'];
+  dataSet = [];
+  dataValues = [];
+  items: any;
+
 
   constructor(private userService: UserService, private eventService: EventService, private storageService: StorageService, private router: Router) { }
 
   ngOnInit(): void {
+    this.displayEvents()
     this.reloadPage();
     this.searchTitle();
     this.userService.getEventHolderBoard().subscribe({
@@ -79,5 +85,12 @@ export class BoardEventHolderComponent implements OnInit {
   reloadPage() {
     // this.location.reload();
     this.router.navigateByUrl(this.router.url);
+  }
+
+  displayEvents(){
+    const user = this.storageService.getUser();
+      this.username = user.username;
+    this.items = this.eventService.findEvent(this.username).pipe(tap(data => console.log(data)));
+    console.log(this.username)
   }
 }

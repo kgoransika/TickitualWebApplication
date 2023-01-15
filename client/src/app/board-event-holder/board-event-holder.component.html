@@ -11,6 +11,10 @@
 
 <div *ngIf="showDivFlag == 'true'">
   <h2>Your Events</h2>
+
+  <div *ngFor="let item of items | async">
+    <p>{{ item.createdBy }}</p>
+  </div>
 </div>
 
 <mat-card hidden>

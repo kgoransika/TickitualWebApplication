@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Event } from '../models/event.model';
 import { StorageService } from './storage.service';
 
@@ -11,6 +11,7 @@ const baseUrl = 'http://localhost:8080/api/events';
 })
 export class EventService {
   username: any;
+  db: any;
 
   constructor(private http: HttpClient, private storageService: StorageService) { }
 
@@ -46,4 +47,12 @@ export class EventService {
   findByCreatedBy(username: any): Observable<Event[]> {
     return this.http.get<Event[]>(`${baseUrl}?createdBy=${username}`);
   }
+
+  find(): Observable<Event[]>{
+    return this.http.get(baseUrl).pipe(map((results: any) => results))
+ }
+
+ findEvent(username: any): Observable<Event[]>{
+  return this.http.get(`${baseUrl}?createdBy=${username}`).pipe(map((results: any) => results))
+}
 }

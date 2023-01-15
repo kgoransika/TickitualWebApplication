@@ -40,10 +40,8 @@
 
       <mat-card>
         <label for="eventCategory" class="form-label">Event Category</label><br>
-        <select class="form-select">
-          <option class="form-label" *ngFor="let Category of categories" [value]="Category.value" id="eventCategory" name="eventCategory">
-            {{Category.viewValue}}
-          </option>
+        <select class="form-select" [(ngModel)]="eventCategory" name="eventCategory">
+          <option *ngFor="let eventCategory of eventCategories" [value]="eventCategory.value">{{ eventCategory.name }}</option>
         </select>
       </mat-card>
 

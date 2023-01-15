@@ -7,11 +7,6 @@ import { EventService } from 'src/app/_services/event.service';
 import { StorageService } from 'src/app/_services/storage.service';
 import { BoardEventHolderComponent } from '../board-event-holder.component';
 
-interface Category {
-  value: string;
-  viewValue: string;
-}
-
 @Component({
   selector: 'app-create-event',
   templateUrl: './create-event.component.html',
@@ -73,7 +68,7 @@ export class CreateEventComponent implements OnInit {
       eventDate: this.event.eventDate,
       eventTime: this.event.eventTime,
       eventDuration: this.event.eventDuration,
-      eventCategory: this.event.eventCategory,
+      eventCategory: this.eventCategory,
       unlimitedTickets: this.event.unlimitedTickets,
       ticketAmount: this.event.ticketAmount,
       ticketPackage: {
@@ -127,18 +122,19 @@ export class CreateEventComponent implements OnInit {
   ticketNumberType: string | undefined;
   ticketNumberTypes: string[] = ['Allocate specific number of tickets', 'Unlimited Tickets'];
 
-  categories: Category[] = [
-    {value: 'music-0', viewValue: 'Musical Event'},
-    {value: 'business-1', viewValue: 'Business Event'},
-    {value: 'sports-2', viewValue: 'Sports Event'},
-    {value: 'education-3', viewValue: 'Educational Event'},
-    {value: 'friendsAndFamily-4', viewValue: 'Friends and Family Event'},
-    {value: 'entertainment-5', viewValue: 'Entertainment'},
-    {value: 'foodAndDrink-6', viewValue: 'Food and Drink'},
-    {value: 'religion-7', viewValue: 'Religious Event'},
-    {value: 'science-8', viewValue: 'Science Event'},
-    {value: 'tech-9', viewValue: 'Tech Event'},
-    {value: 'socialMedia-10', viewValue: 'Social Media Event'}
+  eventCategory: String | undefined;
+  eventCategories = [
+    {value: 'music', name: 'Musical Event'},
+    {value: 'business', name: 'Business Event'},
+    {value: 'sports', name: 'Sports Event'},
+    {value: 'education', name: 'Educational Event'},
+    {value: 'friendsAndFamily', name: 'Friends and Family Event'},
+    {value: 'entertainment', name: 'Entertainment'},
+    {value: 'foodAndDrink', name: 'Food and Drink'},
+    {value: 'religion', name: 'Religious Event'},
+    {value: 'science', name: 'Science Event'},
+    {value: 'tech', name: 'Tech Event'},
+    {value: 'socialMedia', name: 'Social Media Event'}
   ]
   //make the seatcheck div false
   unlimitedTicketsTxt = false;

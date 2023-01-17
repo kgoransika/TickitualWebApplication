@@ -22,7 +22,6 @@ export class CreateEventComponent implements OnInit {
   errorMessage = '';
   unlimitedTickets = false;
 
-
   form: any = {
     eventName: null,
     checkbox: false, input: ''
@@ -38,7 +37,7 @@ export class CreateEventComponent implements OnInit {
     eventTime: '',
     eventDuration: '',
     eventCategory: '',
-    unlimitedTickets: false,
+    unlimitedTickets: this.unlimitedTickets,
     ticketPackage: {
       ticketAmount: '',
       packageName: '',
@@ -72,7 +71,7 @@ export class CreateEventComponent implements OnInit {
       eventTime: this.event.eventTime,
       eventDuration: this.event.eventDuration,
       eventCategory: this.eventCategory,
-      unlimitedTickets: this.event.unlimitedTickets,
+      unlimitedTickets: this.unlimitedTickets,
       ticketPackage: {
         ticketAmount: this.event.ticketPackage?.ticketAmount,
         packageName: this.event.ticketPackage?.packageName,

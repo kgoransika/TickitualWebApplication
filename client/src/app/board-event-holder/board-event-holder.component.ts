@@ -93,4 +93,8 @@ export class BoardEventHolderComponent implements OnInit {
     this.items = this.eventService.findEvent(this.username).pipe(tap(data => console.log(data)));
     console.log(this.username)
   }
+
+  editEvent(){
+    alert("Edit events is still under development!")
+  }
 }

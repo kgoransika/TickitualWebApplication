@@ -15,21 +15,31 @@
 
 <ng-container *ngFor="let item of items | async">
   <mat-card>
-    <mat-card-title>{{ item.eventName }}</mat-card-title><br>
+    <div>
+      <button style="float: right;" class="ms-auto" mat-raised-button color="accent">Publish</button>
+      <mat-card-title>{{ item.eventName }}</mat-card-title>
+    </div><br>
     <mat-card-content>
-      <p>Event Mode: {{ item.eventMode }}</p>
-      <p>Event Venue: {{ item.eventVenue }}</p>
-      <p>Event Date: {{ item.eventDate }}</p>
-      <p>Event Time: {{ item.eventTime }}</p>
-      <p>Event Duration: {{ item.eventDuration }}</p>
-      <p>Event Category: {{ item.eventCategory }}</p><br>
-
-      <p>No. of Tickets: {{ item.ticketAmount }}</p>
-      <h3>Package 1</h3>
-      <p>Ticket Package Name: {{ item.ticketPackage.packageName }}</p>
-      <p>Package Price: {{ item.ticketPackage.packagePrice }}</p>
-      <p>Ticket Description: {{ item.ticketDescription }}</p>
+      <div style="float: left;">
+        <p>Event Mode: {{ item.eventMode }}</p>
+        <p>Event Venue: {{ item.eventVenue }}</p>
+        <p>Event Date: {{ item.eventDate }}</p>
+        <p>Event Time: {{ item.eventTime }}</p>
+        <p>Event Duration: {{ item.eventDuration }}</p>
+        <p>Event Category: {{ item.eventCategory }}</p>
+      </div>
+      <div style="float: right; margin-right: 40%;">
+        <p *ngIf="item.unlimitedTickets == true" >No. of Tickets: Unlimited</p>
+        <p *ngIf="item.unlimitedTickets == false" >No. of Tickets: {{ item.ticketPackage.ticketAmount }}</p>
+        <p>Ticket Name: {{ item.ticketPackage.packageName }}</p>
+        <p>Price: {{ item.ticketPackage.packagePrice }}</p>
+        <p>Ticket Description: {{ item.ticketDescription }}</p>
+      </div>
     </mat-card-content>
+    <div class="ms-auto">
+      <button  mat-stroked-button color="primary" (click)="editEvent()">Edit</button>
+      <button class="btn btn-danger">Delete</button>
+    </div>
   </mat-card>
 <br>
 </ng-container>

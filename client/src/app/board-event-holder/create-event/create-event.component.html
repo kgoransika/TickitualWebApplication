@@ -55,7 +55,7 @@
 
     <mat-card>
       <label for="ticketTypes" class="form-label">Ticket packages
-        <button mat-stroked-button class="btn-sm" color="primary" type="button" style="width: fit-content;" (click)="addPackage()">Add Package</button>
+        <button mat-stroked-button class="btn-sm" color="primary" type="button" style="width: fit-content;" (click)="addPackage()" hidden>Add Package</button>
       </label>
 
       <div style="display: inline-block">
@@ -68,9 +68,9 @@
       <section *ngFor="let package of packages; let i = index;">
         <div class="row" style="align-items: center;">
           Package {{i + 1}}
-          <input type="text" style="width: 40%; margin-left: 10px;" class="form-control" id="packageName" [(ngModel)]="event.ticketPackage!.packageName" name="packageName" aria-describedby="ticketTypes" placeholder="Package Name">
+          <input type="text" style="width: 40%; margin-left: 10px;" class="form-control" id="packageName" [(ngModel)]="event.ticketPackage!.packageName" name="packageName" aria-describedby="ticketTypes" placeholder="Ticket Name">
           <input type="text" style="width: 20%; margin-left: 10px;" class="form-control" id="packagePrice" [(ngModel)]="event.ticketPackage!.packagePrice" name="packagePrice" aria-describedby="ticketTypes" placeholder="Price">
-          <button type="button" style="width: fit-content; margin-left: 10px;" class="btn btn-danger btn-sm" (click)="removePackage(i)">Remove</button>
+          <button type="button" style="width: fit-content; margin-left: 10px;" class="btn btn-danger btn-sm" (click)="removePackage(i)" hidden>Remove</button>
         </div><br>
       </section><br>
 

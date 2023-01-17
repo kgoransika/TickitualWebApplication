@@ -84,7 +84,25 @@ exports.update = (req, res) => {
 
 // Delete a Event with the specified username in the request
 exports.delete = (req, res) => {
-  
+  const id = req.params.id;
+
+  Event.findByIdAndRemove(id)
+    .then(data => {
+      if (!data) {
+        res.status(404).send({
+          message: `Cannot delete Event with id=${id}. Maybe Event was not found!`
+        });
+      } else {
+        res.send({
+          message: "Event was deleted successfully!"
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: "Could not delete Event with id=" + id
+      });
+    });
 };
 
 // Delete all Events from the database.

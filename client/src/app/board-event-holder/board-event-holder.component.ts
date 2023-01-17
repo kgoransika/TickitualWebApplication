@@ -97,4 +97,15 @@ export class BoardEventHolderComponent implements OnInit {
   editEvent(){
     alert("Edit events is still under development!")
   }
+
+  deleteEvent(id: any): void {
+    this.eventService.findByIdAndRemove(id)
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+        },
+        error: (e) => console.error(e)
+      });
+      window.location.reload();
+  }
 }

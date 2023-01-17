@@ -36,7 +36,7 @@ export class EventService {
     return this.http.put(`${baseUrl}/${id}`, data);
   }
 
-  delete(id: any): Observable<any> {
+  findByIdAndRemove(id: any): Observable<any> {
     return this.http.delete(`${baseUrl}/${id}`);
   }
 

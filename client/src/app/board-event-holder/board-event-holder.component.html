@@ -38,8 +38,9 @@
     </mat-card-content>
     <div class="ms-auto">
       <button  mat-stroked-button color="primary" (click)="editEvent()">Edit</button>
-      <button class="btn btn-danger">Delete</button>
+      <button class="btn btn-danger" (click)="deleteEvent(item._id)">Delete</button>
     </div>
+    <p style="font-size: 12px; font-family: 'Courier New', Courier, monospace; font-weight: bold;">Event Id: {{ item._id }}</p>
   </mat-card>
 <br>
 </ng-container>

@@ -27,6 +27,7 @@ exports.create = (req, res) => {
       packagePrice: req.body.ticketPackage.packagePrice,
     },
     ticketDescription: req.body.ticketDescription,
+    published: false
   });
 
   // Save Event in the database

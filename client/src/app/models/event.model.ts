@@ -16,4 +16,5 @@ export class Event {
     packagePrice: String,
   };
   ticketDescription?: String;
+  published?: Boolean;
 }

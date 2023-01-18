@@ -19,6 +19,7 @@ module.exports = mongoose => {
           packagePrice: String,
         },
         ticketDescription: String,
+        published: Boolean
     },
       { timestamps: true }
     )

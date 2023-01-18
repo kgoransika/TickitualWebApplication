@@ -44,6 +44,7 @@ export class CreateEventComponent implements OnInit {
       packagePrice: ''
     },
     ticketDescription: '',
+    published: false
   };
   submitted = false
 

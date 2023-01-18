@@ -10,7 +10,7 @@ import { BoardEventHolderComponent } from './board-event-holder/board-event-hold
 import { CreateEventComponent } from './board-event-holder/create-event/create-event.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: 'home/:id', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },

@@ -6,6 +6,8 @@ import { StorageService } from '../_services/storage.service';
 import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { DataService } from '../_services/data.service';
 
 
 @Component({
@@ -30,8 +32,13 @@ export class BoardEventHolderComponent implements OnInit {
     published: false
   };
   message = '';
-  constructor(private userService: UserService, private eventService: EventService, private storageService: StorageService, private router: Router, private http: HttpClient) { }
+  constructor(private userService: UserService, private eventService: EventService, private storageService: StorageService, private router: Router, private _snackBar: MatSnackBar, private dataService: DataService) { }
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+       duration: 5000,
+    });
+ }
   ngOnInit(): void {
     this.displayEvents()
     this.reloadPage();
@@ -122,11 +129,16 @@ export class BoardEventHolderComponent implements OnInit {
     }
 
     this.currentEvent.id = this.eventService.get(id);
-    console.log(id)
     this.eventService.findByIdAndUpdate(id, data)
-    .subscribe(
-      (event) => console.log(`Event with id ${id} updated:`, event),
-      (error) => console.error(error)
-    );
+    .subscribe({
+      next: (res) => {
+        console.log(`Publish Status of Event with id ${id} updated`)
+        console.log(res);
+      },
+      error: (e) => console.error(e)
+    });
+    this.openSnackBar('Your Event is Published successfully!', 'OK');
+    this.dataService.setData(id);
+    this.router.navigate([`/home/${id}`]);
   }
 }

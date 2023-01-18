@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../_services/data.service';
 import { UserService } from '../_services/user.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,8 +10,13 @@ import { UserService } from '../_services/user.service';
 })
 export class HomeComponent implements OnInit {
   content?: string;
+  data: any;
+  eventId: string;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private dataService: DataService, private route: ActivatedRoute) {
+    this.data = this.dataService.getData();
+    this.eventId = this.route.snapshot.paramMap.get('id')|| "";
+  }
 
   ngOnInit(): void {
     this.userService.getPublicContent().subscribe({
@@ -30,4 +37,6 @@ export class HomeComponent implements OnInit {
       }
     });
   }
+
+
 }

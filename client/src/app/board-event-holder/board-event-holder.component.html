@@ -16,7 +16,7 @@
 <ng-container *ngFor="let item of items | async">
   <mat-card>
     <div>
-      <button style="float: right;" class="ms-auto" mat-raised-button color="accent">Publish</button>
+      <button style="float: right;" class="ms-auto" mat-raised-button color="accent" (click)="publishEvent(item._id)">Publish</button>
       <mat-card-title>{{ item.eventName }}</mat-card-title>
     </div><br>
     <mat-card-content>

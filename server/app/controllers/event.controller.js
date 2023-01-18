@@ -80,6 +80,11 @@ exports.findOne = (req, res) => {
 
 // Update a Event by the username in the request
 exports.update = (req, res) => {
+
+  Event.findByIdAndUpdate(req.params.id, { $set: { published: true } }, (err, event) => {
+    if (err) return res.status(500).send(err);
+    return res.send(event);
+  });
   
 };
 

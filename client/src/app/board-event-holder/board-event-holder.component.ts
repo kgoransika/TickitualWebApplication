@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { EventService } from '../_services/event.service';
 import { UserService } from '../_services/user.service';
 import { Event } from 'src/app/models/event.model';
 import { StorageService } from '../_services/storage.service';
 import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -24,8 +25,12 @@ export class BoardEventHolderComponent implements OnInit {
   dataValues = [];
   items: any;
 
-
-  constructor(private userService: UserService, private eventService: EventService, private storageService: StorageService, private router: Router) { }
+  @Input() currentEvent: Event = {
+    id: '',
+    published: false
+  };
+  message = '';
+  constructor(private userService: UserService, private eventService: EventService, private storageService: StorageService, private router: Router, private http: HttpClient) { }
 
   ngOnInit(): void {
     this.displayEvents()
@@ -89,7 +94,7 @@ export class BoardEventHolderComponent implements OnInit {
 
   displayEvents(){
     const user = this.storageService.getUser();
-      this.username = user.username;
+    this.username = user.username;
     this.items = this.eventService.findEvent(this.username).pipe(tap(data => console.log(data)));
     console.log(this.username)
   }
@@ -107,5 +112,21 @@ export class BoardEventHolderComponent implements OnInit {
         error: (e) => console.error(e)
       });
       window.location.reload();
+  }
+
+  publishEvent(id: any): void {
+
+    const data = {
+      id: this.currentEvent.id,
+      published: false
+    }
+
+    this.currentEvent.id = this.eventService.get(id);
+    console.log(id)
+    this.eventService.findByIdAndUpdate(id, data)
+    .subscribe(
+      (event) => console.log(`Event with id ${id} updated:`, event),
+      (error) => console.error(error)
+    );
   }
 }

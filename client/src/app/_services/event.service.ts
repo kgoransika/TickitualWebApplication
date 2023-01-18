@@ -32,8 +32,8 @@ export class EventService {
     return this.http.post(baseUrl, data);
   }
 
-  update(id: any, data: any): Observable<any> {
-    return this.http.put(`${baseUrl}/${id}`, data);
+  findByIdAndUpdate(id: any, published: any): Observable<any> {
+    return this.http.put(`${baseUrl}/${id}`, published);
   }
 
   findByIdAndRemove(id: any): Observable<any> {

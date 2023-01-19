@@ -1,0 +1,14 @@
+.errorDiv{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+mat-card{
+  font-size: 25px;
+  padding: 50px;
+  background-color: #FFD740;
+}

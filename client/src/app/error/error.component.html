@@ -1,1 +1,6 @@
-<p>error works!</p>
+<div class="errorDiv" *ngIf="errorStatus">
+  <mat-card>
+    Error status: {{ errorStatus }}<br><br>
+  {{ message }}
+  </mat-card>
+</div>

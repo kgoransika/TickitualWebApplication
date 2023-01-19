@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { StorageService } from './_services/storage.service';
 import { AuthService } from './_services/auth.service';
 import { EventBusService } from './_shared/event-bus.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +25,8 @@ export class AppComponent {
     private storageService: StorageService,
     private authService: AuthService,
     private eventBusService: EventBusService,
-    private router: Router
+    public router: Router,
+    public route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -50,9 +51,6 @@ export class AppComponent {
       next: res => {
         console.log(res);
         this.storageService.clean();
-
-        window.location.reload();
-        this.reloadPage();
       },
       error: err => {
         console.log(err);

@@ -139,6 +139,6 @@ export class BoardEventHolderComponent implements OnInit {
     });
     this.openSnackBar('Your Event is Published successfully!', 'OK');
     this.dataService.setData(id);
-    this.router.navigate([`/home/${id}`]);
+    this.router.navigate([`/home/${this.username}/${id}`]);
   }
 }

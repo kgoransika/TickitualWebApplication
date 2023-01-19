@@ -11,7 +11,7 @@ import { CreateEventComponent } from './board-event-holder/create-event/create-e
 import { ErrorComponent } from './error/error.component';
 
 const routes: Routes = [
-  { path: 'home/:id', component: HomeComponent },
+  { path: 'home/:username/:id', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'eventHolder', component: BoardEventHolderComponent },
   { path: 'createEvent', component: CreateEventComponent },
   { path: 'error', component: ErrorComponent },
-  { path: '', redirectTo: 'eventHolder', pathMatch: 'full' }
+  { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 
 @NgModule({

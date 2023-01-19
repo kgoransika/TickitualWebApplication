@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private userService: UserService, private dataService: DataService, private route: ActivatedRoute, private eventService: EventService, private storageService: StorageService, private router: Router) {
     this.data = this.dataService.getData();
+    this.username = this.route.snapshot.paramMap.get('username')|| "";
     this.eventId = this.route.snapshot.paramMap.get('id')|| "";
   }
 
@@ -45,9 +46,6 @@ export class HomeComponent implements OnInit {
   }
 
   searchId(): void {
-
-    const user = this.storageService.getUser();
-    this.username = user.username;
     this.eventService.findByCreatedBy(this.username)
       .subscribe({
         next: (data) => {
@@ -56,9 +54,9 @@ export class HomeComponent implements OnInit {
           const event = data.filter(e => e._id === this.eventId && e.published === true);
           if(event.length === 0){
             console.log("No event found with id: ",this.eventId);
-            this.router.navigate(['/error'], { state: { error: { message: 'Event not found', id: this.eventId } } });
+            this.router.navigate(['/error'], { queryParams: { status: '404' , message: "No event found with id: "+this.eventId} });
             }
-          console.log(event[0]);
+          console.log(event);
         },
         error: (e) => console.error(e)
       });

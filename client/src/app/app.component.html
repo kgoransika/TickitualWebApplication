@@ -33,9 +33,12 @@
     </ul>
   </nav>
 </mat-toolbar>
-<div class="welcome" *ngIf="!isLoggedIn" [ngClass]="'background-class'">
-  <h1 style="text-align: right;">Welcome to TICKITUAL!</h1>
-</div>
+  <div class="welcome" *ngIf="!isLoggedIn" [ngClass]="'background-class'">
+    <div id="welcomeHeading">
+      <h1>WELCOME TO TICKITUAL!</h1>
+      <h1>Create your events and Generate tickets!</h1>
+    </div>
+  </div>
   <div class="container">
     <router-outlet></router-outlet>
   </div>

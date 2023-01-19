@@ -1,5 +1,9 @@
 export class Event {
-  id?: any;
+  static createdBy: string;
+  static filter(arg0: (createdBy: any) => boolean) {
+    throw new Error('Method not implemented.');
+  }
+  _id?: any;
   createdBy?: String;
   eventName?: String;
   eventMode?: String;

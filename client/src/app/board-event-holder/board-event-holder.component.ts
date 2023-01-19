@@ -28,7 +28,7 @@ export class BoardEventHolderComponent implements OnInit {
   items: any;
 
   @Input() currentEvent: Event = {
-    id: '',
+    _id: '',
     published: false
   };
   message = '';
@@ -124,11 +124,11 @@ export class BoardEventHolderComponent implements OnInit {
   publishEvent(id: any): void {
 
     const data = {
-      id: this.currentEvent.id,
+      id: this.currentEvent._id,
       published: false
     }
 
-    this.currentEvent.id = this.eventService.get(id);
+    this.currentEvent._id = this.eventService.get(id);
     this.eventService.findByIdAndUpdate(id, data)
     .subscribe({
       next: (res) => {

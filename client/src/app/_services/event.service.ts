@@ -55,4 +55,8 @@ export class EventService {
  findEvent(username: any): Observable<Event[]>{
   return this.http.get(`${baseUrl}?createdBy=${username}`).pipe(map((results: any) => results))
 }
+
+findByTitle(id: any): Observable<Event[]> {
+  return this.http.get<Event[]>(`${baseUrl}?id=${id}`);
+}
 }

@@ -6,7 +6,7 @@
 
 <div class="headerContent" routerLinkActive="active">
   <h1 id="createEventTitle">Let's create a new event!</h1><br>
-  <a routerLink='/createEvent' class="nav-link" routerLinkActive="active"><button mat-flat-button color="primary">Create Event</button></a>
+  <a routerLink='/createEvent' class="nav-link" routerLinkActive="active"><button mat-raised-button color="accent">Create Event</button></a>
 </div><hr>
 
 <div *ngIf="showDivFlag == 'true'">
@@ -16,7 +16,7 @@
 <ng-container *ngFor="let item of items | async">
   <mat-card>
     <div>
-      <button style="float: right;" class="ms-auto" mat-raised-button color="accent" (click)="publishEvent(item._id)">Publish</button>
+      <button style="float: right;" class="ms-auto" mat-flat-button color="accent" (click)="publishEvent(item._id)">Publish</button>
       <mat-card-title>{{ item.eventName }}</mat-card-title>
     </div><br>
     <mat-card-content>
@@ -37,7 +37,7 @@
       </div>
     </mat-card-content>
     <div class="ms-auto">
-      <button  mat-stroked-button color="primary" (click)="editEvent()">Edit</button>
+      <button  mat-stroked-button (click)="editEvent()">Edit</button>
       <button class="btn btn-danger" (click)="deleteEvent(item._id)">Delete</button>
     </div>
     <div  style="font-size: 12px; font-family: 'Courier New', Courier, monospace; font-weight: bold;">

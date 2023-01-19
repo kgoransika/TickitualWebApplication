@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit {
         next: (data) => {
           this.events = data;
           console.log(data);
-          const event = data.filter(e => e._id === this.eventId);
+          const event = data.filter(e => e._id === this.eventId && e.published === true);
           if(event.length === 0){
             console.log("No event found with id: ",this.eventId);
             this.router.navigate(['/error'], { state: { error: { message: 'Event not found', id: this.eventId } } });

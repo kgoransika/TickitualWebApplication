@@ -27,6 +27,7 @@ import { BoardUserComponent } from './board-user/board-user.component';
 import { httpInterceptorProviders } from './_helpers/http.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CreateEventComponent } from './board-event-holder/create-event/create-event.component';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { CreateEventComponent } from './board-event-holder/create-event/create-e
     BoardEventHolderComponent,
     BoardUserComponent,
     CreateEventComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,

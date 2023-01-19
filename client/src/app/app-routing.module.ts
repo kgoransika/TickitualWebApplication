@@ -8,6 +8,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { BoardUserComponent } from './board-user/board-user.component';
 import { BoardEventHolderComponent } from './board-event-holder/board-event-holder.component';
 import { CreateEventComponent } from './board-event-holder/create-event/create-event.component';
+import { ErrorComponent } from './error/error.component';
 
 const routes: Routes = [
   { path: 'home/:id', component: HomeComponent },
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'user', component: BoardUserComponent },
   { path: 'eventHolder', component: BoardEventHolderComponent },
   { path: 'createEvent', component: CreateEventComponent },
-  { path: '', redirectTo: 'home', pathMatch: 'full' }
+  { path: 'error', component: ErrorComponent },
+  { path: '', redirectTo: 'eventHolder', pathMatch: 'full' }
 ];
 
 @NgModule({

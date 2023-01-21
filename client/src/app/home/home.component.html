@@ -1,7 +1,33 @@
 <div class="container">
   <header class="jumbotron">
-    <p>{{ content }}</p>
-    <div>Event ID: {{eventId}}</div>
-    <div>{{data}}</div>
+    <h2 id="eventId">Event ID: {{eventId}}</h2>
   </header>
+  <div *ngFor="let item of items">
+    <mat-card class="eventCard">
+      <mat-card-header>
+        <mat-card-title><h1>{{item.eventName}}</h1></mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <label>at {{item.eventVenue}}   ||</label>
+        <label>Starts at {{item.eventTime}}   ||</label>
+        <label>On {{item.eventDate}}   ||</label>
+        <label>{{item.eventDuration}}</label><br><br>
+        <mat-card class="ticket">
+          <mat-card-content>
+            <button mat-raised-button class="ms-auto" color="accent" style="float: right;">Buy Ticket!</button>
+            <label>{{item.ticketPackage.packageName}} Ticket</label><br>
+            <label>LKR {{item.ticketPackage.packagePrice}}</label><hr>
+            <label>{{item.ticketDescription}}</label>
+          </mat-card-content>
+        </mat-card>
+      </mat-card-content><br>
+      <label>Organized by {{item.createdBy}}</label>
+    </mat-card>
+    <mat-card id="countDownCard">
+      <mat-card-header><h1>BOOKING ENDS</h1></mat-card-header>
+      <mat-card-content>
+
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>

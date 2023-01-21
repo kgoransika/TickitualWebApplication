@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { StorageService } from '../_services/storage.service';
 import { EventService } from '../_services/event.service';
 import { Event } from 'src/app/models/event.model';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +18,7 @@ export class HomeComponent implements OnInit {
   eventId: string;
   events?: Event[];
   username: any;
+  items: any;
 
   constructor(private userService: UserService, private dataService: DataService, private route: ActivatedRoute, private eventService: EventService, private storageService: StorageService, private router: Router) {
     this.data = this.dataService.getData();
@@ -57,10 +59,16 @@ export class HomeComponent implements OnInit {
             this.router.navigate(['/error'], { queryParams: { status: '404' , message: "No event found with id: "+this.eventId} });
             }
           console.log(event);
+          this.items = event;
         },
         error: (e) => console.error(e)
       });
       /* const event = data.filter(events => events.id === this.eventId)[0];
         console.log(user.eventName) */
+  }
+
+  displayEvents(){
+    this.items = this.eventService.findEvent(this.username).pipe(tap(data => console.log(data)));
+    console.log(this.username)
   }
 }

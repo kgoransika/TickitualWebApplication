@@ -37,6 +37,9 @@ export class AppComponent {
       this.roles = user.roles;
 
       this.showEventHolderBoard = this.roles.includes('ROLE_EVENTHOLDER');
+      if(this.roles.includes('ROLE_EVENTHOLDER')){
+        this.router.navigate(['/eventHolder']);
+      }
 
       this.username = user.username;
     }

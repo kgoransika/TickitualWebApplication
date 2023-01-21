@@ -33,7 +33,7 @@
     </ul>
   </nav>
 </mat-toolbar>
-  <div class="welcome" *ngIf="!isLoggedIn" [ngClass]="'background-class'">
+  <div class="welcome" *ngIf="(router.url === '/') || (router.url === '/register') || (router.url === '/login')" [ngClass]="'background-class'">
     <div id="welcomeHeading">
       <h1>WELCOME TO TICKITUAL!</h1>
       <h1>Create your events and Generate tickets!</h1>

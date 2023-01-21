@@ -19,3 +19,8 @@
 h1{
   font-family: monospace;
 }
+
+.welcome{
+  display: flex;
+  justify-content: center;
+}

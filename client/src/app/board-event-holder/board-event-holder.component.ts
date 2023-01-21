@@ -26,6 +26,7 @@ export class BoardEventHolderComponent implements OnInit {
   dataSet = [];
   dataValues = [];
   items: any;
+  public shareLink: any;
 
   @Input() currentEvent: Event = {
     _id: '',
@@ -139,6 +140,25 @@ export class BoardEventHolderComponent implements OnInit {
     });
     this.openSnackBar('Your Event is Published successfully!', 'OK');
     this.dataService.setData(id);
-    this.router.navigate([`/home/${this.username}/${id}`]);
+    this.shareLink = "localhost:8081/home/"+this.username+"/"+id+""
+    /* this.router.navigate([`/home/${this.username}/${id}`]); */
+    window.location.reload();
   }
+
+  previewEvent(id: any): void{
+
+    const data = {
+      id: this.currentEvent._id,
+      published: false,
+    }
+
+    this.currentEvent._id = this.eventService.get(id);
+    this.eventService.findByIdAndUpdate(id, data)
+    this.dataService.setData(id);
+    this.shareLink = "home/"+this.username+"/"+id
+    this.router.navigate([this.shareLink]);
+  }
+
+
 }
+

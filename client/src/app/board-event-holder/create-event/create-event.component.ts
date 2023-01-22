@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Event } from 'src/app/models/event.model';
 import { EventService } from 'src/app/_services/event.service';
@@ -14,6 +14,8 @@ import { BoardEventHolderComponent } from '../board-event-holder.component';
 })
 
 export class CreateEventComponent implements OnInit {
+
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
   username?: string;
   durationInSeconds = 5;
@@ -53,6 +55,7 @@ export class CreateEventComponent implements OnInit {
 
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
+      verticalPosition: 'top',
        duration: 5000,
     });
  }

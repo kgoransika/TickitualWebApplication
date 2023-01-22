@@ -15,9 +15,12 @@ module.exports = app => {
     // Retrieve a single event with id
     router.get("/:id", events.findOne);
   
-    // Update a event with id
-    router.put("/:id", events.update);
-  
+    /* // Update a event with id
+    router.put("/:id", events.update); */
+
+    // Update published and shareLink
+    router.put("/:id", events.updatePublsihed);
+    
     // Delete a event with id
     router.delete("/:id", events.delete);
   

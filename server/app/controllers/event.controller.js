@@ -27,7 +27,8 @@ exports.create = (req, res) => {
       packagePrice: req.body.ticketPackage.packagePrice,
     },
     ticketDescription: req.body.ticketDescription,
-    published: false
+    published: false,
+    shareLink: ''
   });
 
   // Save Event in the database
@@ -79,13 +80,43 @@ exports.findOne = (req, res) => {
 };
 
 // Update a Event by the username in the request
-exports.update = (req, res) => {
-
-  Event.findByIdAndUpdate(req.params.id, { $set: { published: true } }, (err, event) => {
-    if (err) return res.status(500).send(err);
-    return res.send(event);
-  });
+/* exports.update = (req, res) => {
   
+  Event.findById(req.params.id, (err, event) => {
+    if(err) {
+        return res.status(500).send(err);
+    }
+    if(!event){
+        return res.status(404).send('Event not found');
+    }
+    event.set(req.body);
+    event.save((error, updatedEvent) => {
+        if(error) {
+            return res.status(500).send(error);
+        }
+        return res.status(200).send(updatedEvent);
+    });
+});
+}; */
+
+// Update a Event's (published = true), (shareLink = 'localhost:8081/home/{username}/{eventId}}') by the id in the request
+exports.updatePublsihed = (req, res) => {
+
+  Event.findById(req.params.id, (err, event) => {
+    if(err) {
+        return res.status(500).send(err);
+    }
+    if(!event){
+        return res.status(404).send('Event not found');
+    }
+    event.set(req.body);
+    event.save((error, updatePublsihed) => {
+        if(error) {
+            return res.status(500).send(error);
+        }
+        return res.status(200).send(updatePublsihed);
+    });
+});
 };
 
 // Delete a Event with the specified username in the request

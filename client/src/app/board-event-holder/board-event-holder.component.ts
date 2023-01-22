@@ -26,7 +26,10 @@ export class BoardEventHolderComponent implements OnInit {
   dataSet = [];
   dataValues = [];
   items: any;
-  public shareLink: any;
+  public sharelink: any;
+  id: any;
+  shareLink: any = {};
+  published: any = {};
 
   @Input() currentEvent: Event = {
     _id: '',
@@ -124,13 +127,10 @@ export class BoardEventHolderComponent implements OnInit {
 
   publishEvent(id: any): void {
 
-    const data = {
-      id: this.currentEvent._id,
-      published: false
-    }
-
     this.currentEvent._id = this.eventService.get(id);
-    this.eventService.findByIdAndUpdate(id, data)
+    this.dataService.setData(id);
+    this.sharelink = "home/"+this.username+"/"+id+""
+    this.eventService.findByIdAndUpdate(id, 'true', this.sharelink)
     .subscribe({
       next: (res) => {
         console.log(`Publish Status of Event with id ${id} updated`)
@@ -139,26 +139,18 @@ export class BoardEventHolderComponent implements OnInit {
       error: (e) => console.error(e)
     });
     this.openSnackBar('Your Event is Published successfully!', 'OK');
-    this.dataService.setData(id);
-    this.shareLink = "localhost:8081/home/"+this.username+"/"+id+""
-    /* this.router.navigate([`/home/${this.username}/${id}`]); */
     window.location.reload();
+    /* this.router.navigate([`/home/${this.username}/${id}`]); */
   }
 
-  previewEvent(id: any): void{
+  previewEvent(getLink: any): void{
 
-    const data = {
-      id: this.currentEvent._id,
-      published: false,
-    }
-
-    this.currentEvent._id = this.eventService.get(id);
-    this.eventService.findByIdAndUpdate(id, data)
-    this.dataService.setData(id);
-    this.shareLink = "home/"+this.username+"/"+id
-    this.router.navigate([this.shareLink]);
+    this.router.navigate([getLink]);
   }
 
+  shareEvent():void{
+
+  }
 
 }
 

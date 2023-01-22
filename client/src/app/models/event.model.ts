@@ -21,4 +21,5 @@ export class Event {
   };
   ticketDescription?: String;
   published?: Boolean;
+  shareLink?: String;
 }

@@ -38,7 +38,7 @@
         <p *ngIf="item.unlimitedTickets == true" >No. of Tickets: Unlimited</p>
         <p *ngIf="item.unlimitedTickets == false" >No. of Tickets: {{ item.ticketPackage.ticketAmount }}</p>
         <p>Ticket Name: {{ item.ticketPackage.packageName }}</p>
-        <p>Price: {{ item.ticketPackage.packagePrice }}</p>
+        <p>Price: LKR {{ item.ticketPackage.packagePrice }}/=</p>
         <p>Ticket Description: {{ item.ticketDescription }}</p>
       </div>
     </mat-card-content>

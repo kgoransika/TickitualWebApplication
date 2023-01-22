@@ -1,0 +1,22 @@
+mat-card{
+  width: 40%;
+  padding: 20px;
+}
+
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+}
+
+h1{
+  font-family: monospace;
+  font-size: 28px;
+}
+
+label{
+  font-family: monospace;
+  font-size: 15px;
+  margin: 10px;
+}

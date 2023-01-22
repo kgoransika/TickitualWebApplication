@@ -19,7 +19,8 @@
       <p hidden #textToCopy>http://localhost:8081/{{item.shareLink}}</p>
       <div *ngIf="item.published == true" style="float: right;" class="ms-auto">
         <button class="btn btn-link" (click)="previewEvent(item.shareLink)" style="margin-right: 10px;">Preview event</button>
-        <button class="btn btn-outline-primary btn-sm" ngxClipboard [cbContent]="textToCopy.innerText" (click)="shareEvent()">Copy Event link to share!</button>
+        <button (mouseenter)="showHint = true" (mouseleave)="showHint = false" class="btn btn-outline-primary btn-sm shareBtn" ngxClipboard [cbContent]="textToCopy.innerText" (click)="shareEvent(textToCopy.innerText)">Copy Event link to share!</button>
+        <mat-hint class="hint ms-auto" *ngIf="showHint">{{textToCopy.innerText}}</mat-hint>
       </div>
       <button *ngIf="item.published == false" style="float: right;" class="ms-auto" mat-flat-button color="accent" (click)="publishEvent(item._id)">Publish</button>
       <mat-card-title>{{ item.eventName }}</mat-card-title>

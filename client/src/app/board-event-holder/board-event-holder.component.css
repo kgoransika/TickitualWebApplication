@@ -15,3 +15,25 @@ mat-card{
 button{
   margin: 5px;
 }
+
+.shareBtn{
+  padding: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.hint {
+  padding: 8px;
+  background-color: #eee;
+  color: #666;
+  font-size: 14px;
+  position: absolute;
+  z-index: 1;
+  display: none;
+}
+
+.shareBtn + .hint {
+  display: block;
+}
+
+

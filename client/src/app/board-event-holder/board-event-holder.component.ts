@@ -38,6 +38,7 @@ export class BoardEventHolderComponent implements OnInit {
     published: false
   };
   message = '';
+showHint: any;
   constructor(private userService: UserService, private eventService: EventService, private storageService: StorageService, private router: Router, private _snackBar: MatSnackBar, private dataService: DataService, private _clipboardService: ClipboardService) { }
 
   openSnackBar(message: string, action: string) {
@@ -155,8 +156,8 @@ export class BoardEventHolderComponent implements OnInit {
     this.router.navigate([getLink]);
   }
 
-  shareEvent():void{
-    this.openSnackBar('Event Link copied to Clipboard!', 'OK');
+  shareEvent(textToCopy:any):void{
+    this.openSnackBar('Event Link copied to Clipboard! '+textToCopy , 'OK');
   }
 
 }

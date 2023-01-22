@@ -55,6 +55,15 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  displayStyle = "none";
+
+  openPopup() {
+    this.displayStyle = "block";
+  }
+  closePopup() {
+    this.displayStyle = "none";
+  }
+
   searchId(): void {
     this.eventService.findByCreatedBy(this.username)
       .subscribe({

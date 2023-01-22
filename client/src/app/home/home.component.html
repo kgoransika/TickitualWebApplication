@@ -14,7 +14,7 @@
         <label>{{item.eventDuration}}</label><br><br>
         <mat-card class="ticket">
           <mat-card-content>
-            <button mat-raised-button class="ms-auto" color="accent" style="float: right;">Buy Ticket!</button>
+            <button mat-raised-button class="ms-auto" color="accent" style="float: right;" (click)="openPopup()">Buy Ticket!</button>
             <label>{{item.ticketPackage.packageName}} Ticket</label><br>
             <label>LKR {{item.ticketPackage.packagePrice}}</label><hr>
             <label>{{item.ticketDescription}}</label>
@@ -24,7 +24,7 @@
       <label>Organized by {{item.createdBy}}</label>
     </mat-card>
     <mat-card id="countDownCard">
-      <mat-card-header style="justify-content: center;"  *ngIf="bookingEnd == 'false'"><h1>BOOKING ENDS IN</h1></mat-card-header><hr><br>
+      <mat-card-header style="justify-content: center;"  *ngIf="bookingEnd == 'false'"><h1>- BOOKING ENDS IN -</h1></mat-card-header><hr><br>
       <mat-card-content>
         <div class="countdown-container">
           <!-- <div class="countdown-text">{{ days }} days {{ hours }} hours {{ minutes }} minutes {{ seconds }} seconds remaining</div> -->
@@ -48,5 +48,22 @@
         </div>
       </mat-card-content>
     </mat-card><br>
+  </div>
+  <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Buy your tickets now!</h4>
+          <button type="button" class="btn btn-danger btn-sm" (click)="closePopup()"> X </button>
+        </div>
+        <div class="modal-body">
+          <label>Enter your email and confirm if you want to buy a ticket</label>
+          <input type="email" class="form-control" style="width: 60%;" placeholder="someone@example.com">
+        </div>
+        <div class="modal-footer" style="align-self: center;">
+          <button type="button" class="btn btn-success">Confirm</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

@@ -19,6 +19,14 @@ export class HomeComponent implements OnInit {
   events?: Event[];
   username: any;
   items: any;
+  bookingEnd: String | undefined;
+  bookingEnds: String[] = ['true' , 'false'];
+
+  private targetDate = new Date(); // set target date '2022-12-31T23:59:59'
+  public days = 0;
+  public hours = 0;
+  public minutes = 0;
+  public seconds = 0;
 
   constructor(private userService: UserService, private dataService: DataService, private route: ActivatedRoute, private eventService: EventService, private storageService: StorageService, private router: Router) {
     this.data = this.dataService.getData();
@@ -54,12 +62,39 @@ export class HomeComponent implements OnInit {
           this.events = data;
           console.log(data);
           const event = data.filter(e => e._id === this.eventId && e.published === true);
+          const date = event.filter(d => d.eventDate)
+          console.log(date)
           if(event.length === 0){
             console.log("No event found with id: ",this.eventId);
             this.router.navigate(['/error'], { queryParams: { status: '404' , message: "No event found with id: "+this.eventId} });
             }
           console.log(event);
           this.items = event;
+          console.log(event[0].eventDate);
+
+          const eventDate = event[0].eventDate
+          const dateTime = ""+eventDate
+
+          let eventDateResult : Date = new Date(dateTime);
+          this.targetDate = eventDateResult;
+
+          setInterval(() => {
+            const currentDate = new Date();
+            const timeRemaining = this.targetDate.getTime() - currentDate.getTime();
+
+            if(currentDate > eventDateResult){
+              this.bookingEnd = 'true';
+            }
+            else{
+              this.bookingEnd = 'false';
+            }
+
+            this.days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            this.hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            this.minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            this.seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+          }, 1000);
+
         },
         error: (e) => console.error(e)
       });
@@ -71,4 +106,5 @@ export class HomeComponent implements OnInit {
     this.items = this.eventService.findEvent(this.username).pipe(tap(data => console.log(data)));
     console.log(this.username)
   }
+
 }

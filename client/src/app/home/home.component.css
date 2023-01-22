@@ -16,11 +16,17 @@ label{
   padding: 20px;
   float: left;
   width: fit-content;
+  position: absolute;
 }
 
 #countDownCard{
   float: right;
-  align-items: center;
+  text-align: center;
+  align-content: center;
+  position: absolute;
+  width: 40%;
+  margin-left: 45%;
+  padding: 20px;
 }
 
 .container{
@@ -33,4 +39,26 @@ label{
   -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.countdown-container {
+  text-align: center;
+}
+.countdown-text {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+table{
+  width: 100%;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.bookingExpired{
+  color: red;
+  font-size: 40px;
 }

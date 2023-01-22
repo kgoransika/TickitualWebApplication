@@ -34,7 +34,7 @@
         <p>Event Duration: {{ item.eventDuration }}</p>
         <p>Event Category: {{ item.eventCategory }}</p>
       </div>
-      <div style="float: right; margin-right: 40%;">
+      <div style="float: right; margin-left: 30%; position: absolute;">
         <p *ngIf="item.unlimitedTickets == true" >No. of Tickets: Unlimited</p>
         <p *ngIf="item.unlimitedTickets == false" >No. of Tickets: {{ item.ticketPackage.ticketAmount }}</p>
         <p>Ticket Name: {{ item.ticketPackage.packageName }}</p>

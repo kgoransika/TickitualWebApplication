@@ -24,10 +24,29 @@
       <label>Organized by {{item.createdBy}}</label>
     </mat-card>
     <mat-card id="countDownCard">
-      <mat-card-header><h1>BOOKING ENDS</h1></mat-card-header>
+      <mat-card-header style="justify-content: center;"  *ngIf="bookingEnd == 'false'"><h1>BOOKING ENDS IN</h1></mat-card-header><hr><br>
       <mat-card-content>
-
+        <div class="countdown-container">
+          <!-- <div class="countdown-text">{{ days }} days {{ hours }} hours {{ minutes }} minutes {{ seconds }} seconds remaining</div> -->
+          <table *ngIf="bookingEnd == 'false'">
+            <tr>
+              <td>{{ days }}</td>
+              <td>{{ hours }}</td>
+              <td>{{ minutes }}</td>
+              <td>{{ seconds }}</td>
+            </tr>
+            <tr>
+              <td>DAYS</td>
+              <td>HOURS</td>
+              <td>MINUTES</td>
+              <td>SECONDS</td>
+            </tr>
+          </table>
+          <div *ngIf="bookingEnd == 'true'" class="bookingExpired">
+            <label>Booking Expired!</label>
+          </div>
+        </div>
       </mat-card-content>
-    </mat-card>
+    </mat-card><br>
   </div>
 </div>

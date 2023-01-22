@@ -66,6 +66,15 @@ export class BoardEventHolderComponent implements OnInit {
     });
   }
 
+  displayStyle = "none";
+
+  openPopup() {
+    this.displayStyle = "block";
+  }
+  closePopup() {
+    this.displayStyle = "none";
+  }
+
   retrieveEvents(): void {
     this.eventService.getAll()
       .subscribe({

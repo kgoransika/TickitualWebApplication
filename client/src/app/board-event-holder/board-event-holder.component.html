@@ -16,30 +16,11 @@
 <ng-container *ngFor="let item of items | async">
   <mat-card>
     <div>
+      <p hidden #textToCopy>http://localhost:8081/{{item.shareLink}}</p>
       <div *ngIf="item.published == true" style="float: right;" class="ms-auto">
         <button class="btn btn-link" (click)="previewEvent(item.shareLink)" style="margin-right: 10px;">Preview event</button>
-        <button class="btn btn-outline-primary btn-sm" (click)="openPopup()">Share</button>
+        <button class="btn btn-outline-primary btn-sm" ngxClipboard [cbContent]="textToCopy.innerText" (click)="shareEvent()">Copy Event link to share!</button>
       </div>
-      <!--Event share url Modal-->
-        <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h4 class="modal-title">Share your published event!</h4>
-              </div>
-              <div class="modal-body" style="text-align: center;">
-                <p>http://localhost:8081/{{item.shareLink}}</p>
-
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-danger"
-                        (click)="closePopup()">
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
       <button *ngIf="item.published == false" style="float: right;" class="ms-auto" mat-flat-button color="accent" (click)="publishEvent(item._id)">Publish</button>
       <mat-card-title>{{ item.eventName }}</mat-card-title>
     </div><br>

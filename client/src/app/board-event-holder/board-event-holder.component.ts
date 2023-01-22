@@ -6,8 +6,9 @@ import { StorageService } from '../_services/storage.service';
 import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { DataService } from '../_services/data.service';
+import { ClipboardService } from 'ngx-clipboard';
 
 
 @Component({
@@ -16,6 +17,7 @@ import { DataService } from '../_services/data.service';
   styleUrls: ['./board-event-holder.component.css']
 })
 export class BoardEventHolderComponent implements OnInit {
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
   content?: string;
   events?: Event[];
@@ -36,10 +38,11 @@ export class BoardEventHolderComponent implements OnInit {
     published: false
   };
   message = '';
-  constructor(private userService: UserService, private eventService: EventService, private storageService: StorageService, private router: Router, private _snackBar: MatSnackBar, private dataService: DataService) { }
+  constructor(private userService: UserService, private eventService: EventService, private storageService: StorageService, private router: Router, private _snackBar: MatSnackBar, private dataService: DataService, private _clipboardService: ClipboardService) { }
 
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
+      verticalPosition: 'top',
        duration: 5000,
     });
  }
@@ -66,13 +69,8 @@ export class BoardEventHolderComponent implements OnInit {
     });
   }
 
-  displayStyle = "none";
-
-  openPopup() {
-    this.displayStyle = "block";
-  }
-  closePopup() {
-    this.displayStyle = "none";
+  copy(text: string){
+    this._clipboardService.copy(text)
   }
 
   retrieveEvents(): void {
@@ -158,7 +156,7 @@ export class BoardEventHolderComponent implements OnInit {
   }
 
   shareEvent():void{
-
+    this.openSnackBar('Event Link copied to Clipboard!', 'OK');
   }
 
 }

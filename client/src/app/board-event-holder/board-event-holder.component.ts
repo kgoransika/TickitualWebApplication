@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 import { MatSnackBar, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { DataService } from '../_services/data.service';
 import { ClipboardService } from 'ngx-clipboard';
-
+import io  from 'socket.io-client';
 
 @Component({
   selector: 'app-board-event-holder',
@@ -17,6 +17,10 @@ import { ClipboardService } from 'ngx-clipboard';
   styleUrls: ['./board-event-holder.component.css']
 })
 export class BoardEventHolderComponent implements OnInit {
+
+  clients = 0;
+  socket: any;
+
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
   content?: string;
@@ -48,6 +52,12 @@ showHint: any;
     });
  }
   ngOnInit(): void {
+
+    this.socket = io('http://localhost:8080');
+    this.socket.on('clients', (data: number) => {
+      this.clients = data;
+    });
+
     this.displayEvents()
     this.reloadPage();
     this.searchTitle();

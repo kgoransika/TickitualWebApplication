@@ -4,15 +4,21 @@ const cookieSession = require("cookie-session");
 const dbConfig = require("./app/config/db.config");
 
 const app = express();
-const socketio = require("socket.io");
-const http = require("http");
-const server = http.createServer(app);
+const http = require('http').createServer(app);
+const io = require("socket.io")(http, {
+  cors: {
+    origin: "http://localhost:8081",
+    methods: ["GET", "POST"],
+  }
+});
 
-var corsOptions = {
-  origin: ["http://localhost:8081"],
-  credentials: true
-}
+const corsOptions = {
+  origin: 'http://localhost:8081',
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  credentials: true,
+};
 
+/* io.attach(http, corsOptions); */
 app.use(cors(corsOptions));
 
 // parse requests of content-type - application/json
@@ -56,14 +62,23 @@ require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
 require("./app/routes/event.routes")(app);
 
-let io = socketio(server);
-io.on("connection",function(socket){
-  console.log("Connected to SOCKET!");
-})
+let clients = 0;
+
+io.on('connection', (socket) => {
+    clients++;
+    io.sockets.emit('clients', clients);
+    console.log(`A user connected. Total clients: ${clients}`);
+
+    socket.on('disconnect', () => {
+        clients--;
+        io.sockets.emit('clients', clients);
+        console.log(`A user disconnected. Total clients: ${clients}`);
+    });
+});
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
+http.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
 

@@ -64,10 +64,16 @@ require("./app/routes/event.routes")(app);
 
 let clients = 0;
 
-io.on('connection', (socket) => {
+io.on('connection', (socket) => {/* 
     clients++;
     io.sockets.emit('clients', clients);
-    console.log(`A user connected. Total clients: ${clients}`);
+    console.log(`A user connected. Total clients: ${clients}`); */
+
+    socket.on('home-view', () => {
+      clients++;
+      io.sockets.emit('clients', clients);
+      console.log(`A user connected. Total clients: ${clients}`);
+    });
 
     socket.on('disconnect', () => {
         clients--;

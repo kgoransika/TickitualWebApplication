@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { EventService } from '../_services/event.service';
 import { UserService } from '../_services/user.service';
 import { Event } from 'src/app/models/event.model';
@@ -16,7 +16,7 @@ import io  from 'socket.io-client';
   templateUrl: './board-event-holder.component.html',
   styleUrls: ['./board-event-holder.component.css']
 })
-export class BoardEventHolderComponent implements OnInit {
+export class BoardEventHolderComponent implements OnInit, OnDestroy {
 
   clients = 0;
   socket: any;
@@ -79,6 +79,12 @@ showHint: any;
       }
     });
   }
+
+  ngOnDestroy() {
+    /* this.socket = io('http://localhost:8080');
+    this.socket.emit('disconnect');
+    this.socket.disconnect(); */
+}
 
   copy(text: string){
     this._clipboardService.copy(text)

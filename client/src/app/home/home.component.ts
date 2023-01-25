@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject  } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy  } from '@angular/core';
 import { DataService } from '../_services/data.service';
 import { UserService } from '../_services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -6,13 +6,17 @@ import { StorageService } from '../_services/storage.service';
 import { EventService } from '../_services/event.service';
 import { Event } from 'src/app/models/event.model';
 import { tap } from 'rxjs';
+import io  from 'socket.io-client';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
+
+  clients = 0;
+  socket: any;
   content?: string;
   data: any;
   eventId: string;
@@ -35,6 +39,10 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.socket = io('http://localhost:8080');
+    this.socket.emit('home-view');
+
     this.searchId();
     this.userService.getPublicContent().subscribe({
       next: data => {
@@ -54,6 +62,12 @@ export class HomeComponent implements OnInit {
       }
     });
   }
+
+  ngOnDestroy() {
+    this.socket = io('http://localhost:8080');
+    this.socket.emit('disconnect');
+    this.socket.disconnect();
+}
 
   displayStyle = "none";
 

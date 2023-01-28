@@ -64,9 +64,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.socket = io('http://localhost:8080');
+    /* this.socket = io('http://localhost:8080');
     this.socket.emit('disconnect');
-    this.socket.disconnect();
+    this.socket.disconnect(); */
 }
 
   displayStyle = "none";

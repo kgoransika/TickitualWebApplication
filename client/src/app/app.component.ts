@@ -11,9 +11,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title(title: any) {
-    throw new Error('Method not implemented.');
-  }
+
+  title = 'Tickitual';
   private roles: string[] = [];
   isLoggedIn = false;
   showEventHolderBoard = false;

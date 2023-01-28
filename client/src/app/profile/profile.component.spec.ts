@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import {MatCardModule} from '@angular/material/card';
 import { ProfileComponent } from './profile.component';
 
 describe('ProfileComponent', () => {
@@ -8,6 +8,9 @@ describe('ProfileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [
+        MatCardModule
+      ],
       declarations: [ ProfileComponent ]
     })
     .compileComponents();

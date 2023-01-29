@@ -21,9 +21,7 @@ jobs:
       - checkout
       - run:
           name: Install Angular CLI
-          command: |
-            cd client
-            npm install -g @angular/cli
+          command: npm install -g @angular/cli
       - run:
           name: Install client dependencies
           command: |

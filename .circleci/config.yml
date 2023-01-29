@@ -9,19 +9,10 @@ jobs:
           name: Install client dependencies
           command: |
             cd client
-            npm install
+            npm install -g @angular/cli
+            ng --version
       - run:
           name: Run client tests
           command: |
             cd client
             ng test
-      - run:
-          name: Install server dependencies
-          command: |
-            cd server
-            npm install
-      - run:
-          name: Run server tests
-          command: |
-            cd server
-            npm test

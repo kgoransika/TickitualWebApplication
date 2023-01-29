@@ -20,13 +20,15 @@ jobs:
       - checkout
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./server
       - run:
           name: Install dependencies
           command: npm install
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
-            - ./node_modules
+            - ./server/node_modules
       - run:
           name: Run test
           command: npm test

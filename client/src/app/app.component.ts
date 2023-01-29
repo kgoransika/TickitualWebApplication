@@ -19,6 +19,7 @@ export class AppComponent {
   username?: string;
 
   eventBusSub?: Subscription;
+  static isLoggedIn: boolean;
 
   constructor(
     private storageService: StorageService,

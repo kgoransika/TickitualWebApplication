@@ -1,0 +1,18 @@
+version: 2.1
+jobs:
+  client:
+    working_directory: ~/repo/client
+    docker:
+      - image: circleci/node:12
+    steps:
+      - checkout
+      - run: npm install
+      - run: ng test
+  server:
+    working_directory: ~/repo/server
+    docker:
+      - image: circleci/node:12
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm test

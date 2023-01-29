@@ -22,7 +22,7 @@ jobs:
             - .
 
   deploy: # this can be any name you choose
-    executor: heroku/default
+    executor: heroku/tickitual
     steps:
       - attach_workspace:
           at: ~/project

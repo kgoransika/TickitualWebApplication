@@ -3,10 +3,10 @@ orbs:
   node: circleci/node@1.1.6
   heroku: circleci/heroku@0.0.10
 workflows:
-  build_and_deploy:
+  heroku_deploy:
     jobs:
       - build
-      - deploy:
+      - heroku/deploy-via-git:  
           requires:
             - build
           filters:
@@ -14,21 +14,21 @@ workflows:
               only: main
 jobs:
   build:
-    working_directory: ~/repo
     docker:
       - image: circleci/node:10.16.0
     steps:
       - checkout
       - run:
-          name: Install client dependencies
-          command: cd client && npm install
+          name: Install global packages
+          command: sudo npm install -g @angular/cli
       - run:
           name: Install server dependencies
           command: cd server && npm install
       - run:
-          name: Build client
-          command: cd client && ng build
-  deploy:
-    working_directory: ~/repo
-    steps:
-      - heroku/deploy-via-git
+          name: Install client dependencies
+          command: cd client && npm install
+
+deploy:
+  working_directory: ~/repo
+  steps:
+  - heroku/deploy-via-git

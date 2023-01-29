@@ -20,6 +20,11 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install Angular CLI
+          command: |
+            cd client
+            npm install -g @angular/cli
+      - run:
           name: Install client dependencies
           command: |
             cd client

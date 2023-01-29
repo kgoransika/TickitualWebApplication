@@ -1,14 +1,27 @@
 version: 2.1
 jobs:
   build:
-    working_directory: ~/repo/client
     docker:
       - image: circleci/node:12
     steps:
       - checkout
-      - run: npm install
-      - run: ng test
-
-      - working_directory: ~/repo/server
-      - run: npm install
-      - run: npm test
+      - run:
+          name: Install client dependencies
+          command: |
+            cd client
+            npm install
+      - run:
+          name: Run client tests
+          command: |
+            cd client
+            ng test
+      - run:
+          name: Install server dependencies
+          command: |
+            cd server
+            npm install
+      - run:
+          name: Run server tests
+          command: |
+            cd server
+            npm test

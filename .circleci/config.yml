@@ -14,10 +14,33 @@ workflows:
               only: main
 jobs:
   build:
+    working_directory: ~/repo
     docker:
       - image: circleci/node:10.16.0
     steps:
       - checkout
       - run:
-          name: Install dependencies
-          command: npm install
+          name: Install client dependencies
+          command: |
+            cd client
+            npm install
+      - run:
+          name: Run client tests
+          command: |
+            cd client
+            ng test
+      - run:
+          name: Install server dependencies
+          command: |
+            cd server
+            npm install
+      - run:
+          name: Run server tests
+          command: |
+            cd server
+            npm test
+      - run:
+          name: Deploy to production
+          command: |
+            cd server
+            git push heroku master

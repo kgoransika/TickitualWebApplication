@@ -9,6 +9,46 @@ exports.create = (req, res) => {
     return;
   }
 
+  if (!req.body.eventMode) {
+    res.status(400).send({ message: "Content can not be empty!" });
+    return;
+  }
+
+  if (!req.body.eventVenue) {
+    res.status(400).send({ message: "Content can not be empty!" });
+    return;
+  }
+
+  if (!req.body.eventDate) {
+    res.status(400).send({ message: "Content can not be empty!" });
+    return;
+  }
+
+  if (!req.body.eventTime) {
+    res.status(400).send({ message: "Content can not be empty!" });
+    return;
+  }
+
+  if (!req.body.eventDuration) {
+    res.status(400).send({ message: "Content can not be empty!" });
+    return;
+  }
+
+  if (!req.body.ticketPackage.packageName) {
+    res.status(400).send({ message: "Content can not be empty!" });
+    return;
+  }
+
+  if (!req.body.ticketPackage.packagePrice) {
+    res.status(400).send({ message: "Content can not be empty!" });
+    return;
+  }
+
+  if (!req.body.ticketDescription) {
+    res.status(400).send({ message: "Content can not be empty!" });
+    return;
+  }
+
   // Create a event
   const event = new Event({
     createdBy: req.body.createdBy,

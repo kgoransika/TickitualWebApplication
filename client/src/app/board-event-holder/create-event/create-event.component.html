@@ -7,20 +7,27 @@
           <input type="text" class="form-control" id="eventName" [(ngModel)]="event.eventName" name="eventName" aria-describedby="eventName" placeholder="My Event" required
           #eventName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && eventName.errors }">
           <div *ngIf="eventName.errors && f.submitted" class="invalid-feedback">
-            Username is required!
+            Event Name is required!
           </div>
       </mat-card>
 
       <mat-card>
         <label for="eventMode" class="form-label">Event Mode</label><br>
-          <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="eventMode" name="eventMode" id="eventMode">
+          <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="eventMode" name="eventMode" id="eventMode" required
+          #eventmode="ngModel" [ngClass]="{ 'is-invalid': f.submitted && eventmode.errors }">
             <mat-radio-button [checked]="true" class="example-radio-button" *ngFor="let eventMode of eventModes" [value]="eventMode">
               {{eventMode}}
             </mat-radio-button>
+            <div *ngIf="eventmode.errors && f.submitted" class="invalid-feedback">
+              Event Mode is required
+            </div>
           </mat-radio-group><br>
 
           <div class="venueInput" *ngIf="eventMode == 'Venue Event'">
-            <input type="text" class="form-control" name="eventVenue" id="eventVenue" [(ngModel)]="event.eventVenue" name="eventVenue" aria-describedby="eventVenue" placeholder="Enter Venue">
+            <input type="text" class="form-control" name="eventVenue" id="eventVenue" [(ngModel)]="event.eventVenue" name="eventVenue" aria-describedby="eventVenue" placeholder="Enter Venue"  required #eventVenue="ngModel" [ngClass]="{ 'is-invalid': f.submitted && eventVenue.errors }">
+            <div *ngIf="eventVenue.errors && f.submitted" class="invalid-feedback">
+              Event Venue is required!
+            </div>
           </div>
 
           <div class="onlineEventInput" *ngIf="eventMode == 'Online Event'">
@@ -31,11 +38,20 @@
       <mat-card>
           <label for="eventTime" class="form-label">Event Date and Time</label><br>
             <div class="row" style="margin-left: 5px;">
-              <input type="date" data-format="dd/MM/yyyy" id="eventDate" [(ngModel)]="event.eventDate" name="eventDate" class="form-control" name="eventDate" style="width: 25%; margin-right: 10px;">
-              <input type="time" data-format="hh:mm" id="eventTime" class="form-control" [(ngModel)]="event.eventTime" name="eventTime" style="width: 25%;">
+              <input type="date" data-format="dd/MM/yyyy" id="eventDate" [(ngModel)]="event.eventDate" name="eventDate" class="form-control" name="eventDate" style="width: 25%; margin-right: 10px;"  required #eventDate="ngModel" [ngClass]="{ 'is-invalid': f.submitted && eventDate.errors }">
+              <input type="time" data-format="hh:mm" id="eventTime" class="form-control" [(ngModel)]="event.eventTime" name="eventTime" style="width: 25%;" required #eventTime="ngModel" [ngClass]="{ 'is-invalid': f.submitted && eventTime.errors }">
+              <div *ngIf="eventDate.errors && f.submitted" class="invalid-feedback">
+                Event Date is required!
+              </div>
+              <div *ngIf="eventTime.errors && f.submitted" class="invalid-feedback">
+                Event Time is required!
+              </div>
             </div><br><br>
           <label for="eventDuration" class="form-label">Event Duration</label><br>
-          <input type="text" class="form-control" id="eventDuration" [(ngModel)]="event.eventDuration" name="eventDuration" style="width: 25%;" placeholder="1 hour">
+          <input type="text" class="form-control" id="eventDuration" [(ngModel)]="event.eventDuration" name="eventDuration" style="width: 25%;" placeholder="1 hour" required #eventDuration="ngModel" [ngClass]="{ 'is-invalid': f.submitted && eventDuration.errors }">
+          <div *ngIf="eventDuration.errors && f.submitted" class="invalid-feedback">
+            Event Duration is required!
+          </div>
       </mat-card>
 
       <mat-card>
@@ -68,15 +84,24 @@
       <section *ngFor="let package of packages; let i = index;">
         <div class="row" style="align-items: center;">
           Package {{i + 1}}
-          <input type="text" style="width: 40%; margin-left: 10px;" class="form-control" id="packageName" [(ngModel)]="event.ticketPackage!.packageName" name="packageName" aria-describedby="ticketTypes" placeholder="Ticket Name">
-          <input type="text" style="width: 20%; margin-left: 10px;" class="form-control" id="packagePrice" [(ngModel)]="event.ticketPackage!.packagePrice" name="packagePrice" aria-describedby="ticketTypes" placeholder="Price">
+          <input type="text" style="width: 40%; margin-left: 10px;" class="form-control" id="packageName" [(ngModel)]="event.ticketPackage!.packageName" name="packageName" aria-describedby="ticketTypes" placeholder="Ticket Name"  required #packageName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && packageName.errors }">
+          <div *ngIf="packageName.errors && f.submitted" class="invalid-feedback">
+            package Name is required!
+          </div>
+          <input type="text" style="width: 20%; margin-left: 10px;" class="form-control" id="packagePrice" [(ngModel)]="event.ticketPackage!.packagePrice" name="packagePrice" aria-describedby="ticketTypes" placeholder="Price"  required #packagePrice="ngModel" [ngClass]="{ 'is-invalid': f.submitted && packagePrice.errors }">
+          <div *ngIf="packagePrice.errors && f.submitted" class="invalid-feedback">
+            package Price is required!
+          </div>
           <button type="button" style="width: fit-content; margin-left: 10px;" class="btn btn-danger btn-sm" (click)="removePackage(i)" hidden>Remove</button>
         </div><br>
       </section><br>
 
       <label for="ticketDesc" class="form-label">Ticket Description</label>
         <div class="form-outline">
-          <textarea class="form-control" id="ticketDescription" [(ngModel)]="event.ticketDescription" name="ticketDescription" rows="4" placeholder="A small description for the ticket..." maxlength="200"></textarea>
+          <textarea class="form-control" id="ticketDescription" [(ngModel)]="event.ticketDescription" name="ticketDescription" rows="4" placeholder="A small description for the ticket..." maxlength="200" required #ticketDescription="ngModel" [ngClass]="{ 'is-invalid': f.submitted && ticketDescription.errors }"></textarea>
+          <div *ngIf="ticketDescription.errors && f.submitted" class="invalid-feedback">
+            Ticket Description is required!
+          </div>
         </div><br><br>
 
         <div style="text-align: right;">

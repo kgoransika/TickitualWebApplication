@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const cookieSession = require("cookie-session");
-const dbConfig = require("./app/config/db.config");
+const dbConfig = require("./config/db.config");
 
 const app = express();
 const http = require('http').createServer(app);
@@ -35,7 +35,7 @@ app.use(
   })
 );
 
-const db = require("./app/models");
+const db = require("./models");
 const Role = db.role;
 
 db.mongoose
@@ -58,9 +58,9 @@ app.get("/", (req, res) => {
 });
 
 // routes
-require("./app/routes/auth.routes")(app);
-require("./app/routes/user.routes")(app);
-require("./app/routes/event.routes")(app);
+require("./routes/auth.routes")(app);
+require("./routes/user.routes")(app);
+require("./routes/event.routes")(app);
 
 let clients = 0;
 

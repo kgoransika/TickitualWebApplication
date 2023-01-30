@@ -6,7 +6,7 @@
   "scripts": {
     "server": "nodemon --quiet server",
     "client": "ng serve --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"ng serve\""
   },
   "repository": {
     "type": "git",

@@ -23,7 +23,7 @@ jobs:
           command: sudo npm install -g @angular/cli
       - run:
           name: Install server dependencies
-          command: cd server && npm install
+          command: npm install
       - run:
           name: Install client dependencies
           command: cd client && npm install

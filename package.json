@@ -4,9 +4,7 @@
   "description": "Backend TickitualWebApplication",
   "main": "server.js",
   "scripts": {
-    "server": "nodemon --quiet server",
-    "client": "ng serve --prefix client",
-    "dev": "concurrently \"npm run server\" \"ng serve\""
+    "start": "nodemon --exec babel-node src/server.js"
   },
   "repository": {
     "type": "git",

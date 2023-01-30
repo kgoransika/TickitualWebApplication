@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "server": "nodemon --quiet server",
-    "client": "npm start --prefix client",
+    "client": "ng serve --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {

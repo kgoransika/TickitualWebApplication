@@ -134,4 +134,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     console.log(this.username)
   }
 
+  buyTicket(){
+    this.socket = io('http://localhost:8080');
+    this.socket.emit('buy-ticket');
+  }
 }

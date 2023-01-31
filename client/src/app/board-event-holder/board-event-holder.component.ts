@@ -18,6 +18,7 @@ import io  from 'socket.io-client';
 })
 export class BoardEventHolderComponent implements OnInit, OnDestroy {
 
+  tickets = 0;
   clients = 0;
   socket: any;
 
@@ -57,6 +58,9 @@ showHint: any;
     this.socket.emit('home-view');
     this.socket.on('clients', (data: number) => {
       this.clients = data;
+    });
+    this.socket.on('tickets', (data: number) => {
+      this.tickets = data;
     });
 
     this.displayEvents()

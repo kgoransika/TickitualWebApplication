@@ -63,6 +63,7 @@ require("./routes/user.routes")(app);
 require("./routes/event.routes")(app);
 
 let clients = 0;
+let tickets = 0;
 
 io.on('connection', (socket) => {/* 
     clients++;
@@ -73,6 +74,12 @@ io.on('connection', (socket) => {/*
       clients++;
       io.sockets.emit('clients', clients);
       console.log(`A user connected. Total clients: ${clients}`);
+    });
+
+    socket.on('buy-ticket', () => {
+      tickets++;
+      io.sockets.emit('tickets', tickets);
+      console.log(`A user bought a ticket`);
     });
 
     socket.on('disconnect', () => {

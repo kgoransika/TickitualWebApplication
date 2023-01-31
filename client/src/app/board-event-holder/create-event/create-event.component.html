@@ -77,7 +77,7 @@
       <div style="display: inline-block">
         <mat-checkbox class="example-margin" [(ngModel)]="unlimitedTickets" name="unlimitedTickets">Unlimited Tickets</mat-checkbox>
           <section [ngClass]="{'disabled': unlimitedTickets}">
-            <input type="number" class="form-control" id="ticketAmount" [(ngModel)]="event.ticketPackage!.ticketAmount" name="ticketAmount" style="width: 20%;" placeholder="No. of Tickets">
+            <input type="number" min="0" class="form-control" id="ticketAmount" [(ngModel)]="event.ticketPackage!.ticketAmount" name="ticketAmount" style="width: 20%;" placeholder="No. of Tickets">
           </section><br>
       </div>
 
@@ -88,7 +88,7 @@
           <div *ngIf="packageName.errors && f.submitted" class="invalid-feedback">
             package Name is required!
           </div>
-          <input type="text" style="width: 20%; margin-left: 10px;" class="form-control" id="packagePrice" [(ngModel)]="event.ticketPackage!.packagePrice" name="packagePrice" aria-describedby="ticketTypes" placeholder="Price"  required #packagePrice="ngModel" [ngClass]="{ 'is-invalid': f.submitted && packagePrice.errors }">
+          <input type="number" min="0" style="width: 20%; margin-left: 10px;" class="form-control" id="packagePrice" [(ngModel)]="event.ticketPackage!.packagePrice" name="packagePrice" aria-describedby="ticketTypes" placeholder="Price"  required #packagePrice="ngModel" [ngClass]="{ 'is-invalid': f.submitted && packagePrice.errors }">
           <div *ngIf="packagePrice.errors && f.submitted" class="invalid-feedback">
             package Price is required!
           </div>
@@ -96,9 +96,9 @@
         </div><br>
       </section><br>
 
-      <label for="ticketDesc" class="form-label">Ticket Description</label>
+      <label for="ticketDesc" class="form-label">Short Description for your ticket</label>
         <div class="form-outline">
-          <textarea class="form-control" id="ticketDescription" [(ngModel)]="event.ticketDescription" name="ticketDescription" rows="4" placeholder="A small description for the ticket..." maxlength="200" required #ticketDescription="ngModel" [ngClass]="{ 'is-invalid': f.submitted && ticketDescription.errors }"></textarea>
+          <textarea class="form-control" id="ticketDescription" [(ngModel)]="event.ticketDescription" name="ticketDescription" rows="4" placeholder="A small description for the ticket..." maxlength="60" required #ticketDescription="ngModel" [ngClass]="{ 'is-invalid': f.submitted && ticketDescription.errors }"></textarea>
           <div *ngIf="ticketDescription.errors && f.submitted" class="invalid-feedback">
             Ticket Description is required!
           </div>

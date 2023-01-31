@@ -36,4 +36,18 @@ button{
   display: block;
 }
 
+table{
+  margin: auto;
+}
 
+td{
+  margin: auto;
+  width: fit-content;
+}
+
+#viewerCountCard{
+  align-items: center;
+  width: 250px;
+  height: 120px;
+  margin: 20px;
+}

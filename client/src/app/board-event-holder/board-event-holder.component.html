@@ -3,14 +3,46 @@
     <!-- <p>{{ content }}</p> -->
   </header>
 </div>
-<div>
-  <h1>Specific Component</h1>
-  <p>Number of users viewing this component: {{ clients }}</p>
-</div>
 <div class="headerContent" routerLinkActive="active">
   <h1 id="createEventTitle">Let's create a new event!</h1><br>
   <a routerLink='/createEvent' class="nav-link" routerLinkActive="active"><button mat-raised-button color="accent">Create Event</button></a>
 </div><hr>
+
+<table>
+  <tr>
+    <td>
+      <mat-card id="viewerCountCard">
+        <mat-card-header style="text-align: center;">
+          No. of users viewing events
+        </mat-card-header><br>
+        <mat-card-content style="font-weight: bold; font-size: 22px;">
+          <label>{{ clients }}</label>
+        </mat-card-content>
+      </mat-card>
+    </td>
+    <td>
+      <mat-card id="viewerCountCard">
+        <mat-card-header style="text-align: center;">
+          Total No. of tickets sold
+        </mat-card-header><br>
+        <mat-card-content style="font-weight: bold; font-size: 22px;">
+          <label>{{ clients }}</label>
+        </mat-card-content>
+      </mat-card>
+    </td>
+
+    <td>
+      <mat-card id="viewerCountCard">
+        <mat-card-header style="text-align: center;">
+          Total No. of tickets sold
+        </mat-card-header><br>
+        <mat-card-content style="font-weight: bold; font-size: 22px;">
+          <label>{{ clients }}</label>
+        </mat-card-content>
+      </mat-card>
+    </td>
+  </tr>
+</table><br><hr>
 
 <div *ngIf="showDivFlag == 'true'">
   <h1>Your Events</h1>

@@ -54,6 +54,7 @@ showHint: any;
   ngOnInit(): void {
 
     this.socket = io('http://localhost:8080');
+    this.socket.emit('home-view');
     this.socket.on('clients', (data: number) => {
       this.clients = data;
     });

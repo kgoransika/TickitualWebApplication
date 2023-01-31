@@ -78,6 +78,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.displayStyle = "none";
   }
 
+  buyTicketIfExpired(){
+    alert("Booking date is expired!")
+  }
+
   searchId(): void {
     this.eventService.findByCreatedBy(this.username)
       .subscribe({

@@ -8,7 +8,7 @@
   <a routerLink='/createEvent' class="nav-link" routerLinkActive="active"><button mat-raised-button color="accent">Create Event</button></a>
 </div><hr>
 
-<table>
+<table *ngIf="showDivFlag == 'true'">
   <tr>
     <td>
       <mat-card id="viewerCountCard">
